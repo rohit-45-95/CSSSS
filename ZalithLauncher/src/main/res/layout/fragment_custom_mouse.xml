@@ -30,32 +30,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/title_view"
-                android:layout_width="wrap_content"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginHorizontal="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_4sdp"
-                android:text="@string/custom_mouse_title"
-                android:textColor="#FFB74D"
-                android:textSize="@dimen/_14ssp"
-                android:textStyle="bold"
+                app:tabIndicatorColor="#FFB74D"
+                app:tabSelectedTextColor="#FFB74D"
+                app:tabTextColor="#888888"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/custom_mouse_tab_import" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/custom_mouse_tab_draw" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginHorizontal="@dimen/_4sdp"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="@dimen/_4sdp"
-                android:scrollbars="vertical"
-                android:scrollbarThumbVertical="@drawable/scrollbar_thumb"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/title_view" />
+                app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -109,6 +119,18 @@
                     tools:srcCompat="@tools:sample/avatars"
                     tools:ignore="ContentDescription" />
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/mouse_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/custom_mouse_preview"
+                android:textColor="#888888"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mouse_preview_card" />
 
             <include
                 android:id="@+id/action_bar"

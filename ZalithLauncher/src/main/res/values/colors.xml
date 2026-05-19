@@ -27,6 +27,7 @@
 
     <!-- Secondary Text -->
     <color name="secondary_text">#888899</color>
+    <color name="tab_selected">#FFB74D</color>
 
     <!-- Buttons -->
     <color name="button_background">#252538</color>
