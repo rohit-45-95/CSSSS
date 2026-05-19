@@ -4,14 +4,14 @@
     <item android:state_pressed="true">
         <set>
             <objectAnimator
-                android:duration="140"
+                android:duration="120"
                 android:propertyName="scaleX"
-                android:valueTo="1.03"
+                android:valueTo="1.04"
                 android:valueType="floatType" />
             <objectAnimator
-                android:duration="140"
+                android:duration="120"
                 android:propertyName="scaleY"
-                android:valueTo="1.03"
+                android:valueTo="1.04"
                 android:valueType="floatType" />
         </set>
     </item>
@@ -19,14 +19,14 @@
     <item android:state_selected="true">
         <set>
             <objectAnimator
-                android:duration="180"
+                android:duration="160"
                 android:propertyName="scaleX"
-                android:valueTo="1.015"
+                android:valueTo="1.02"
                 android:valueType="floatType" />
             <objectAnimator
-                android:duration="180"
+                android:duration="160"
                 android:propertyName="scaleY"
-                android:valueTo="1.015"
+                android:valueTo="1.02"
                 android:valueType="floatType" />
         </set>
     </item>
@@ -34,14 +34,14 @@
     <item android:state_activated="true">
         <set>
             <objectAnimator
-                android:duration="180"
+                android:duration="160"
                 android:propertyName="scaleX"
-                android:valueTo="1.015"
+                android:valueTo="1.02"
                 android:valueType="floatType" />
             <objectAnimator
-                android:duration="180"
+                android:duration="160"
                 android:propertyName="scaleY"
-                android:valueTo="1.015"
+                android:valueTo="1.02"
                 android:valueType="floatType" />
         </set>
     </item>
@@ -49,12 +49,12 @@
     <item>
         <set>
             <objectAnimator
-                android:duration="160"
+                android:duration="150"
                 android:propertyName="scaleX"
                 android:valueTo="1.0"
                 android:valueType="floatType" />
             <objectAnimator
-                android:duration="160"
+                android:duration="150"
                 android:propertyName="scaleY"
                 android:valueTo="1.0"
                 android:valueType="floatType" />

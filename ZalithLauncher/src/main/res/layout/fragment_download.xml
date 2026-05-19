@@ -7,304 +7,268 @@
     android:animateLayoutChanges="true"
     android:background="@drawable/bg_download_screen_modern"
     android:clipToPadding="false"
-    android:padding="12dp"
+    android:padding="8dp"
     tools:ignore="ContentDescription">
 
     <View
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:alpha="0.28"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:alpha="0.18"
         android:background="@drawable/bg_glow_blue"
-        android:translationX="-56dp"
-        android:translationY="-20dp"
+        android:translationX="-45dp"
+        android:translationY="-18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:alpha="0.18"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:alpha="0.14"
         android:background="@drawable/bg_glow_orange"
-        android:translationX="48dp"
-        android:translationY="72dp"
+        android:translationX="50dp"
+        android:translationY="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/sidebar_guide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.36" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/classify_layout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:minWidth="112dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/sidebar_guide"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_max="118dp"
+        app:layout_constraintWidth_min="92dp"
+        app:layout_constraintWidth_percent="0.28">
 
         <com.angcyo.tablayout.DslTabLayout
             android:id="@+id/classify_tab"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="8dp"
             android:animateLayoutChanges="true"
             android:background="@drawable/bg_download_sidebar"
             android:clipToPadding="false"
-            android:padding="10dp"
+            android:paddingStart="6dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="6dp"
+            android:paddingBottom="8dp"
+            android:layoutAnimation="@anim/layout_animation_download_tabs"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/classify_shadowView"
+            app:layout_constraintEnd_toStartOf="@id/classify_shadowView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tab_draw_indicator="true"
             app:tab_indicator_color="#FFFFB74D"
             app:tab_indicator_enable_flow="true"
-            app:tab_indicator_x_offset="6dp"
+            app:tab_indicator_x_offset="3dp"
             app:tab_orientation="VERTICAL">
 
+            <!-- MOD -->
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_download_tab_item"
-                android:minHeight="68dp"
-                android:paddingStart="12dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="12dp"
+                android:minHeight="84dp"
+                android:paddingStart="6dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="8dp"
                 android:stateListAnimator="@animator/download_tab_lift">
-
-                <View
-                    android:id="@+id/mod_icon_holder"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bg_download_icon_holder"
-                    android:duplicateParentState="true" />
 
                 <ImageView
                     android:id="@+id/mod_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="9dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_download_icon_holder"
                     android:duplicateParentState="true"
+                    android:padding="9dp"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_profile_mods"
                     app:tint="@color/download_tab_icon_tint" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_toEndOf="@id/mod_icon_holder"
+                    android:layout_below="@id/mod_image"
+                    android:layout_marginTop="6dp"
                     android:duplicateParentState="true"
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
                     android:maxLines="2"
                     android:text="@string/download_classify_mod"
+                    android:textAlignment="center"
                     android:textColor="@color/download_tab_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="10.5sp" />
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
+            <!-- MODPACK -->
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_download_tab_item"
-                android:minHeight="68dp"
-                android:paddingStart="12dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="12dp"
+                android:minHeight="84dp"
+                android:paddingStart="6dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="8dp"
                 android:stateListAnimator="@animator/download_tab_lift">
-
-                <View
-                    android:id="@+id/modpack_icon_holder"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bg_download_icon_holder"
-                    android:duplicateParentState="true" />
 
                 <ImageView
                     android:id="@+id/modpack_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="9dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_download_icon_holder"
                     android:duplicateParentState="true"
+                    android:padding="9dp"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_zip"
                     app:tint="@color/download_tab_icon_tint" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_toEndOf="@id/modpack_icon_holder"
+                    android:layout_below="@id/modpack_image"
+                    android:layout_marginTop="6dp"
                     android:duplicateParentState="true"
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
                     android:maxLines="2"
                     android:text="@string/download_classify_modpack"
+                    android:textAlignment="center"
                     android:textColor="@color/download_tab_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="10.5sp" />
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
+            <!-- RESOURCE PACK -->
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_download_tab_item"
-                android:minHeight="68dp"
-                android:paddingStart="12dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="12dp"
+                android:minHeight="84dp"
+                android:paddingStart="6dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="8dp"
                 android:stateListAnimator="@animator/download_tab_lift">
-
-                <View
-                    android:id="@+id/resource_pack_icon_holder"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bg_download_icon_holder"
-                    android:duplicateParentState="true" />
 
                 <ImageView
                     android:id="@+id/resource_pack_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="9dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_download_icon_holder"
                     android:duplicateParentState="true"
+                    android:padding="9dp"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_profile_resource_pack"
                     app:tint="@color/download_tab_icon_tint" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_toEndOf="@id/resource_pack_icon_holder"
+                    android:layout_below="@id/resource_pack_image"
+                    android:layout_marginTop="6dp"
                     android:duplicateParentState="true"
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
                     android:maxLines="2"
                     android:text="@string/download_classify_resource_pack"
+                    android:textAlignment="center"
                     android:textColor="@color/download_tab_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="10.5sp" />
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
+            <!-- WORLD -->
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="8dp"
                 android:background="@drawable/bg_download_tab_item"
-                android:minHeight="68dp"
-                android:paddingStart="12dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="12dp"
+                android:minHeight="84dp"
+                android:paddingStart="6dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="8dp"
                 android:stateListAnimator="@animator/download_tab_lift">
-
-                <View
-                    android:id="@+id/world_icon_holder"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bg_download_icon_holder"
-                    android:duplicateParentState="true" />
 
                 <ImageView
                     android:id="@+id/world_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="9dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_download_icon_holder"
                     android:duplicateParentState="true"
+                    android:padding="9dp"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_profile_saves"
                     app:tint="@color/download_tab_icon_tint" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_toEndOf="@id/world_icon_holder"
+                    android:layout_below="@id/world_image"
+                    android:layout_marginTop="6dp"
                     android:duplicateParentState="true"
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
                     android:maxLines="2"
                     android:text="@string/download_classify_world"
+                    android:textAlignment="center"
                     android:textColor="@color/download_tab_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="10.5sp" />
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
+            <!-- SHADER PACK -->
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_download_tab_item"
-                android:minHeight="68dp"
-                android:paddingStart="12dp"
-                android:paddingTop="12dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="12dp"
+                android:minHeight="84dp"
+                android:paddingStart="6dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="8dp"
                 android:stateListAnimator="@animator/download_tab_lift">
-
-                <View
-                    android:id="@+id/shader_pack_icon_holder"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/bg_download_icon_holder"
-                    android:duplicateParentState="true" />
 
                 <ImageView
                     android:id="@+id/shader_pack_image"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="9dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_download_icon_holder"
                     android:duplicateParentState="true"
+                    android:padding="9dp"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/ic_profile_shader_pack"
                     app:tint="@color/download_tab_icon_tint" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="4dp"
-                    android:layout_toEndOf="@id/shader_pack_icon_holder"
+                    android:layout_below="@id/shader_pack_image"
+                    android:layout_marginTop="6dp"
                     android:duplicateParentState="true"
                     android:ellipsize="end"
                     android:fontFamily="sans-serif-medium"
+                    android:gravity="center"
                     android:maxLines="2"
                     android:text="@string/download_classify_shader_pack"
+                    android:textAlignment="center"
                     android:textColor="@color/download_tab_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="10.5sp" />
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
         </com.angcyo.tablayout.DslTabLayout>
@@ -313,8 +277,8 @@
             android:id="@+id/classify_shadowView"
             android:layout_width="2dp"
             android:layout_height="0dp"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="28dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             android:background="@drawable/bg_sidebar_edge_light"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -326,12 +290,12 @@
         android:id="@+id/content_panel"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
         android:background="@drawable/bg_download_content_panel"
-        android:elevation="8dp"
+        android:elevation="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/classify_layout"
@@ -340,10 +304,10 @@
         <View
             android:id="@+id/content_glow"
             android:layout_width="0dp"
-            android:layout_height="4dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="22dp"
+            android:layout_height="3dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="18dp"
             android:background="@drawable/bg_download_top_glow"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -353,10 +317,10 @@
             android:id="@+id/download_viewpager"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="6dp"
             android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

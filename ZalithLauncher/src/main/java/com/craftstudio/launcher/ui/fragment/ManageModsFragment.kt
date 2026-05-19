@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.craftstudio.launcher.feature.customprofilepath.ProfilePathManager
 import com.craftstudio.launcher.feature.customprofilepath.ProfilePathHome
 import com.craftstudio.launcher.R
+import com.craftstudio.launcher.feature.mod.ModUtils
 import com.craftstudio.launcher.feature.resource.LocalResourceManager
 import com.craftstudio.launcher.ui.adapter.ManageResourceAdapter
 import java.io.File
@@ -46,20 +47,26 @@ class ManageModsFragment : FragmentWithAnim() {
         adapter = ManageResourceAdapter(
             emptyList(),
             onToggle = { item, isEnabled ->
-                val success = resourceManager.toggleResource(item, isEnabled)
-                if (!success) {
+                try {
+                    if (isEnabled) {
+                        ModUtils.enableMod(item.file)
+                    } else {
+                        ModUtils.disableMod(item.file)
+                    }
                     loadItems(view)
+                } catch (e: Exception) {
                     Toast.makeText(requireContext(), "Failed to toggle mod", Toast.LENGTH_SHORT).show()
-                } else {
                     loadItems(view)
                 }
             },
             onDelete = { item ->
-                val success = resourceManager.deleteResource(item)
-                if (!success) {
+                try {
+                    item.file.delete()
+                    loadItems(view)
+                } catch (e: Exception) {
                     Toast.makeText(requireContext(), "Failed to delete mod", Toast.LENGTH_SHORT).show()
+                    loadItems(view)
                 }
-                loadItems(view)
             }
         )
         recyclerView.adapter = adapter
