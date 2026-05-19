@@ -1584,38 +1584,15 @@
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
             <FrameLayout
-                android:id="@+id/gameMenuPreview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:background="@drawable/bg_game_preview_holder"
                 android:padding="12dp">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="vertical"
-                    android:padding="8dp">
-
-                    <TextView
-                        android:id="@+id/memoryText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#24B538"
-                        android:textSize="10sp"
-                        tools:text="Memory: 0MB/0MB" />
-
-                    <TextView
-                        android:id="@+id/fpsText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:textColor="#24B538"
-                        android:textSize="10sp"
-                        tools:text="FPS: 60" />
-
-                </LinearLayout>
+                <include
+                    android:id="@+id/gameMenuPreview"
+                    layout="@layout/view_game_menu_window" />
 
             </FrameLayout>
 

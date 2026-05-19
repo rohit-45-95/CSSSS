@@ -16,7 +16,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/fps_text"
+        android:id="@+id/fpsText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
@@ -28,12 +28,12 @@
         tools:ignore="HardcodedText" />
 
     <TextView
-        android:id="@+id/memory_text"
+        android:id="@+id/memoryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginHorizontal="@dimen/_8sdp"
-        android:layout_toEndOf="@id/fps_text"
+        android:layout_toEndOf="@id/fpsText"
         android:visibility="gone"
         android:text="M: 0MB/0MB"
         android:textColor="@android:color/white"
