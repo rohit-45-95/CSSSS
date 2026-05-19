@@ -81,8 +81,8 @@ class VersionManagerFragment : FragmentWithAnim(R.layout.fragment_version_manage
             when (v) {
                 shortcutsMods -> {
                     val bundle = Bundle()
-                    bundle.putString(ModsFragment.BUNDLE_ROOT_PATH, File(gameDirPath, "/mods").mustExists().absolutePath)
-                    ZHTools.swapFragmentWithAnim(this@VersionManagerFragment, ModsFragment::class.java, ModsFragment.TAG, bundle)
+                    bundle.putString(ManageModsFragment.BUNDLE_ROOT_PATH, File(gameDirPath, "/mods").mustExists().absolutePath)
+                    ZHTools.swapFragmentWithAnim(this@VersionManagerFragment, ManageModsFragment::class.java, ManageModsFragment.TAG, bundle)
                 }
                 gamePath -> swapFilesFragment(gameDirPath, gameDirPath)
                 resourcePath -> swapFilesFragment(gameDirPath, File(gameDirPath, "/resourcepacks"))

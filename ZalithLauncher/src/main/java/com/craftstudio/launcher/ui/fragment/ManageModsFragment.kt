@@ -19,8 +19,14 @@ import java.io.File
 
 class ManageModsFragment : FragmentWithAnim() {
 
+    companion object {
+        const val TAG = "ManageModsFragment"
+        const val BUNDLE_ROOT_PATH: String = "root_path"
+    }
+
     private lateinit var resourceManager: LocalResourceManager
     private lateinit var adapter: ManageResourceAdapter
+    private lateinit var mRootPath: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,13 +38,15 @@ class ManageModsFragment : FragmentWithAnim() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        parseBundle()
+
         view.findViewById<TextView>(R.id.tv_title).text = "Manage Mods"
 
         view.findViewById<ImageView>(R.id.btn_back).setOnClickListener {
             parentFragmentManager.popBackStack()
         }
 
-        val modsDir = resolveModsDir().apply { mkdirs() }
+        val modsDir = File(mRootPath).apply { mkdirs() }
         resourceManager = LocalResourceManager(modsDir, listOf(".jar", ".zip"))
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
@@ -85,18 +93,17 @@ class ManageModsFragment : FragmentWithAnim() {
         recyclerView.visibility = if (isEmpty) View.GONE else View.VISIBLE
     }
 
-    private fun resolveModsDir(): File {
-        val customPath = ProfilePathManager.getCurrentPath()
-        val gameHome = if (customPath.isNotBlank()) {
-            File(customPath, ".minecraft")
-        } else {
-            File(ProfilePathHome.getGameHome())
+    private fun parseBundle() {
+        val bundle = arguments
+        mRootPath = bundle?.getString(BUNDLE_ROOT_PATH) ?: run {
+            val customPath = ProfilePathManager.getCurrentPath()
+            val gameHome = if (customPath.isNotBlank()) {
+                File(customPath, ".minecraft")
+            } else {
+                File(ProfilePathHome.getGameHome())
+            }
+            File(gameHome, "mods").absolutePath
         }
-        return File(gameHome, "mods")
-    }
-
-    companion object {
-        const val TAG = "ManageModsFragment"
     }
 
     override fun slideIn(animPlayer: com.movtery.anim.AnimPlayer) {
