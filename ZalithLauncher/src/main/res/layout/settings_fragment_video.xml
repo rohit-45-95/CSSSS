@@ -4,150 +4,191 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_video_settings_screen"
+    android:background="#000000"
     android:clipToPadding="false"
     android:fillViewport="true"
     android:overScrollMode="never"
+    android:scrollbars="none"
     tools:ignore="UseSwitchCompatOrMaterialXml">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layoutAnimation="@anim/layout_anim_video_settings"
+        android:layoutAnimation="@anim/layout_anim_video_pro"
         android:orientation="vertical"
-        android:paddingStart="12dp"
-        android:paddingTop="14dp"
-        android:paddingEnd="12dp"
-        android:paddingBottom="24dp">
+        android:paddingStart="14dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="28dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="14dp"
+            android:layout_marginBottom="18dp"
             app:cardBackgroundColor="@android:color/transparent"
-            app:cardCornerRadius="22dp"
+            app:cardCornerRadius="24dp"
             app:cardElevation="0dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_video_settings_header"
-                android:minHeight="110dp"
-                android:paddingStart="16dp"
-                android:paddingTop="16dp"
+                android:background="@drawable/bg_vid_header"
+                android:minHeight="96dp"
+                android:paddingStart="18dp"
+                android:paddingTop="18dp"
                 android:paddingEnd="14dp"
-                android:paddingBottom="16dp">
+                android:paddingBottom="18dp">
+
+                <View
+                    android:layout_width="68dp"
+                    android:layout_height="68dp"
+                    android:alpha="0.25"
+                    android:background="@drawable/bg_vid_glow_green"
+                    app:layout_constraintBottom_toBottomOf="@id/vid_header_icon_card"
+                    app:layout_constraintEnd_toEndOf="@id/vid_header_icon_card"
+                    app:layout_constraintStart_toStartOf="@id/vid_header_icon_card"
+                    app:layout_constraintTop_toTopOf="@id/vid_header_icon_card" />
 
                 <FrameLayout
-                    android:id="@+id/video_header_icon_holder"
-                    android:layout_width="54dp"
-                    android:layout_height="54dp"
-                    android:background="@drawable/bg_video_setting_action"
+                    android:id="@+id/vid_header_icon_card"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:background="@drawable/bg_vid_icon_holder_green"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
+                        android:id="@+id/settings_header_icon"
                         android:layout_width="26dp"
                         android:layout_height="26dp"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_setting_video"
-                        app:tint="#FFFFB74D" />
+                        app:tint="#24B538" />
 
                 </FrameLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="8dp"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/video_header_badge"
-                    app:layout_constraintStart_toEndOf="@id/video_header_icon_holder"
+                    app:layout_constraintEnd_toStartOf="@id/vid_header_badge"
+                    app:layout_constraintStart_toEndOf="@id/vid_header_icon_card"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:letterSpacing="0.03"
                         android:text="@string/setting_category_video"
                         android:textColor="#FFFFFF"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:textSize="21sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="Renderer, display and performance controls"
-                        android:textColor="#B3FFFFFF"
+                        android:fontFamily="sans-serif"
+                        android:text="Renderer, display &amp; performance"
+                        android:textColor="#80FFFFFF"
                         android:textSize="11sp" />
 
                     <View
-                        android:layout_width="42dp"
+                        android:layout_width="48dp"
                         android:layout_height="3dp"
-                        android:layout_marginTop="9dp"
-                        android:background="@drawable/bg_video_setting_accent" />
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_vid_accent_line" />
 
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/video_header_badge"
+                    android:id="@+id/vid_header_badge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_video_setting_chip_accent"
+                    android:background="@drawable/bg_vid_badge_green"
+                    android:fontFamily="sans-serif-bold"
                     android:paddingStart="10dp"
                     android:paddingTop="5dp"
                     android:paddingEnd="10dp"
                     android:paddingBottom="5dp"
-                    android:text="GRAPHICS"
-                    android:textColor="#FFFFCC80"
-                    android:textSize="10sp"
-                    android:textStyle="bold"
+                    android:text="GPU"
+                    android:textColor="#24B538"
+                    android:textSize="9sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageView
+                    android:id="@+id/settings_header_art"
+                    android:layout_width="80dp"
+                    android:layout_height="70dp"
+                    android:alpha="0.12"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/bg_settings_art"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="18dp"
+                android:background="@drawable/bg_vid_accent_line" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-bold"
+                android:letterSpacing="0.08"
+                android:text="RENDERER &amp; DRIVER"
+                android:textColor="#8024B538"
+                android:textSize="11sp" />
+
+        </LinearLayout>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/video_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_video_settings_panel"
+            android:background="@drawable/bg_vid_panel"
             android:orientation="vertical"
             android:padding="10dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginBottom="10dp"
-                android:text="RENDERER &amp; DRIVER"
-                android:textColor="#FFFFB74D"
-                android:textSize="11sp"
-                android:textStyle="bold" />
 
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:id="@+id/renderer_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/renderer_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/renderer_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -156,37 +197,43 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/renderer_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_renderer_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/renderer_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_vid_value_chip"
+                            android:fontFamily="sans-serif"
+                            android:paddingStart="10dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="4dp"
                             android:text="@string/generic_default"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#24B538"
                             android:textSize="11sp" />
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/renderer_download"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_video_setting_action"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_vid_action_btn"
                         android:contentDescription="@string/setting_category_download"
-                        android:padding="9dp"
+                        android:padding="10dp"
                         android:src="@drawable/ic_download"
-                        app:tint="#FFFFB74D" />
+                        app:tint="#24B538" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
@@ -196,22 +243,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/import_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/import_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -220,37 +270,37 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/renderer_local_import_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_renderer_local_import_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/renderer_local_import_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/setting_renderer_local_import_desc"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/renderer_local_import_manage"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_video_setting_action"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_vid_action_btn"
                         android:contentDescription="@string/setting_renderer_local_manage"
-                        android:padding="9dp"
+                        android:padding="10dp"
                         android:src="@drawable/ic_setting"
-                        app:tint="#FFFFB74D" />
+                        app:tint="#24B538" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
@@ -260,22 +310,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/driver_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/driver_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -284,72 +337,104 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/driver_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_driver_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/driver_value"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
+                            android:background="@drawable/bg_vid_value_chip"
+                            android:fontFamily="sans-serif"
+                            android:paddingStart="10dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="4dp"
                             android:text="@string/generic_default"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#24B538"
                             android:textSize="11sp" />
 
                     </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/driver_download"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_video_setting_action"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_vid_action_btn"
                         android:contentDescription="@string/setting_category_download"
-                        android:padding="9dp"
+                        android:padding="10dp"
                         android:src="@drawable/ic_download"
-                        app:tint="#FFFFB74D" />
+                        app:tint="#24B538" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="18dp"
+                android:background="@drawable/bg_vid_accent_line" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-bold"
+                android:letterSpacing="0.08"
                 android:text="DISPLAY"
-                android:textColor="#FFFFB74D"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:textColor="#8024B538"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_vid_panel"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:id="@+id/ignoreNotch_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/notch_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/notch_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -358,24 +443,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/ignoreNotch_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_ignore_notch_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/ignoreNotch_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/setting_ignore_notch_desc"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
                     </LinearLayout>
@@ -387,8 +472,8 @@
                         android:checked="true"
                         android:showText="false"
                         android:splitTrack="false"
-                        android:thumbTint="@color/video_setting_switch_thumb"
-                        android:trackTint="@color/video_setting_switch_track" />
+                        android:thumbTint="@color/vid_switch_thumb"
+                        android:trackTint="@color/vid_switch_track" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
@@ -398,22 +483,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/notch_launcher_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/notch_launcher_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -422,24 +510,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/ignoreNotchLauncher_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_launcher_ignore_notch_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/ignoreNotchLauncher_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/setting_launcher_ignore_notch_desc"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
                     </LinearLayout>
@@ -451,8 +539,8 @@
                         android:checked="true"
                         android:showText="false"
                         android:splitTrack="false"
-                        android:thumbTint="@color/video_setting_switch_thumb"
-                        android:trackTint="@color/video_setting_switch_track" />
+                        android:thumbTint="@color/vid_switch_thumb"
+                        android:trackTint="@color/vid_switch_track" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
@@ -462,39 +550,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_video_setting_row"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/res_accent"
                     android:layout_width="4dp"
-                    android:layout_height="54dp"
+                    android:layout_height="56dp"
                     android:layout_alignParentStart="true"
-                    android:layout_marginTop="6dp"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/res_accent"
                     android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/resolutionRatio_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
                         android:text="@string/setting_resolution_scaler_title"
-                        android:textColor="#FFFFFFFF"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/resolutionRatio_summary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="4dp"
                         android:text="@string/setting_resolution_scaler_desc"
-                        android:textColor="#B3FFFFFF"
+                        android:textColor="#80FFFFFF"
                         android:textSize="11sp" />
 
                     <LinearLayout
@@ -509,14 +599,14 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@drawable/bg_video_setting_chip"
+                            android:background="@drawable/bg_vid_value_chip"
                             android:ellipsize="end"
                             android:maxLines="1"
-                            android:paddingStart="10dp"
-                            android:paddingTop="7dp"
-                            android:paddingEnd="10dp"
-                            android:paddingBottom="7dp"
-                            android:textColor="#FFFFFFFF"
+                            android:paddingStart="12dp"
+                            android:paddingTop="6dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="6dp"
+                            android:textColor="#FFFFFF"
                             android:textSize="11sp" />
 
                         <TextView
@@ -524,14 +614,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:background="@drawable/bg_video_setting_chip_accent"
-                            android:paddingStart="10dp"
-                            android:paddingTop="7dp"
-                            android:paddingEnd="10dp"
-                            android:paddingBottom="7dp"
-                            android:textColor="#FFFFCC80"
-                            android:textSize="11sp"
-                            android:textStyle="bold" />
+                            android:background="@drawable/bg_vid_green_chip"
+                            android:fontFamily="sans-serif-bold"
+                            android:paddingStart="12dp"
+                            android:paddingTop="6dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="6dp"
+                            android:textColor="#24B538"
+                            android:textSize="11sp" />
 
                     </LinearLayout>
 
@@ -539,46 +629,72 @@
                         android:id="@+id/resolutionRatio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="12dp"
                         android:max="300"
                         android:min="25"
-                        android:progressTint="#FFFFB74D"
-                        android:thumbTint="#FFFFB74D" />
+                        android:progressTint="#24B538"
+                        android:thumbTint="#24B538" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="18dp"
+                android:background="@drawable/bg_vid_accent_line" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-bold"
+                android:letterSpacing="0.08"
                 android:text="PERFORMANCE"
-                android:textColor="#FFFFB74D"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:textColor="#8024B538"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_vid_panel"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:id="@+id/sustainedPerformance_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/sustained_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/sustained_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -587,24 +703,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/sustainedPerformance_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_sustained_performance_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/sustainedPerformance_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/setting_limit_overheating_throttling"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
                     </LinearLayout>
@@ -615,8 +731,8 @@
                         android:layout_height="wrap_content"
                         android:showText="false"
                         android:splitTrack="false"
-                        android:thumbTint="@color/video_setting_switch_thumb"
-                        android:trackTint="@color/video_setting_switch_track" />
+                        android:thumbTint="@color/vid_switch_thumb"
+                        android:trackTint="@color/vid_switch_track" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
@@ -626,22 +742,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/surface_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/surface_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -650,24 +769,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/alternate_surface_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_use_surface_view_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/alternate_surface_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/setting_use_surface_view_desc"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
                     </LinearLayout>
@@ -678,8 +797,8 @@
                         android:layout_height="wrap_content"
                         android:showText="false"
                         android:splitTrack="false"
-                        android:thumbTint="@color/video_setting_switch_thumb"
-                        android:trackTint="@color/video_setting_switch_track" />
+                        android:thumbTint="@color/vid_switch_thumb"
+                        android:trackTint="@color/vid_switch_track" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
@@ -689,22 +808,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/vsync_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/vsync_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -713,24 +835,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/force_vsync_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_force_vsync_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/force_vsync_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/setting_limit_overheating_throttling"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
                     </LinearLayout>
@@ -741,43 +863,69 @@
                         android:layout_height="wrap_content"
                         android:showText="false"
                         android:splitTrack="false"
-                        android:thumbTint="@color/video_setting_switch_thumb"
-                        android:trackTint="@color/video_setting_switch_track" />
+                        android:thumbTint="@color/vid_switch_thumb"
+                        android:trackTint="@color/vid_switch_track" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="18dp"
+                android:background="@drawable/bg_vid_accent_line" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-bold"
+                android:letterSpacing="0.08"
                 android:text="ZINK / VULKAN"
-                android:textColor="#FFFFB74D"
-                android:textSize="11sp"
-                android:textStyle="bold" />
+                android:textColor="#8024B538"
+                android:textSize="11sp" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_vid_panel"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:id="@+id/vsync_in_zink_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/zink_vsync_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/zink_vsync_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -786,24 +934,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/vsync_in_zink_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_vsync_in_zink_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/vsync_in_zink_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/setting_vsync_in_zink_desc"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
                     </LinearLayout>
@@ -814,8 +962,8 @@
                         android:layout_height="wrap_content"
                         android:showText="false"
                         android:splitTrack="false"
-                        android:thumbTint="@color/video_setting_switch_thumb"
-                        android:trackTint="@color/video_setting_switch_track" />
+                        android:thumbTint="@color/vid_switch_thumb"
+                        android:trackTint="@color/vid_switch_track" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
@@ -825,22 +973,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/bg_video_setting_row"
-                android:minHeight="84dp"
-                android:padding="12dp"
-                android:stateListAnimator="@animator/anim_video_setting_press">
+                android:background="@drawable/bg_vid_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_vid_pro_press">
 
                 <View
+                    android:id="@+id/zink_driver_accent"
                     android:layout_width="4dp"
-                    android:layout_height="42dp"
+                    android:layout_height="44dp"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/bg_video_setting_accent" />
+                    android:background="@drawable/bg_vid_accent_line" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/zink_driver_accent"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -849,24 +1000,24 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical"
-                        android:paddingEnd="10dp">
+                        android:paddingEnd="12dp">
 
                         <TextView
                             android:id="@+id/zinkPreferSystemDriver_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
                             android:text="@string/setting_vulkan_driver_system_title"
-                            android:textColor="#FFFFFFFF"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/zinkPreferSystemDriver_summary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/setting_vulkan_driver_system_desc"
-                            android:textColor="#B3FFFFFF"
+                            android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
                     </LinearLayout>
@@ -877,8 +1028,8 @@
                         android:layout_height="wrap_content"
                         android:showText="false"
                         android:splitTrack="false"
-                        android:thumbTint="@color/video_setting_switch_thumb"
-                        android:trackTint="@color/video_setting_switch_track" />
+                        android:thumbTint="@color/vid_switch_thumb"
+                        android:trackTint="@color/vid_switch_track" />
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
