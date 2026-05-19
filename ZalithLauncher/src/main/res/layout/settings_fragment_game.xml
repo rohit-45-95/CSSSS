@@ -425,6 +425,88 @@
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                android:id="@+id/gameLanguageOverridden_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_game_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_game_press">
+
+                <View
+                    android:id="@+id/glo_accent"
+                    android:layout_width="4dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_game_accent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/glo_accent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_game_icon_circle">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_translate"
+                            app:tint="#24B538" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="10dp">
+
+                        <TextView
+                            android:id="@+id/gameLanguageOverridden_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/setting_set_game_language_overridden_title"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/gameLanguageOverridden_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:lineSpacingMultiplier="1.2"
+                            android:text="@string/setting_set_game_language_overridden_desc"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/gameLanguageOverridden"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:showText="false"
+                        android:splitTrack="false"
+                        android:thumbTint="@color/game_switch_thumb"
+                        android:trackTint="@color/game_switch_track" />
+
+                </LinearLayout>
+            </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:id="@+id/setGameLanguage_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -621,6 +703,89 @@
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
 
             <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                android:id="@+id/selectRuntimeMode_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_game_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_game_press">
+
+                <View
+                    android:id="@+id/srm_accent"
+                    android:layout_width="4dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_game_accent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/srm_accent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_game_icon_circle">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_runtime"
+                            app:tint="#24B538" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="10dp">
+
+                        <TextView
+                            android:id="@+id/selectRuntimeMode_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/setting_java_select_runtime_title"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/selectRuntimeMode_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/bg_game_value_chip"
+                            android:paddingStart="10dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="4dp"
+                            android:text="@string/setting_java_select_runtime_ask_me"
+                            android:textColor="#24B538"
+                            android:textSize="11sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="#4424B538" />
+
+                </LinearLayout>
+            </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
                 android:id="@+id/javaArgs_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -767,6 +932,14 @@
                             android:textColor="#80FFFFFF"
                             android:textSize="11sp" />
 
+                        <TextView
+                            android:id="@+id/allocation_memory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:textColor="#5524B538"
+                            android:textSize="10sp" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -886,6 +1059,565 @@
 
                 </LinearLayout>
             </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <!-- GAME MENU SECTION -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="4dp"
+                android:layout_height="18dp"
+                android:background="@drawable/bg_game_accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="sans-serif-bold"
+                android:letterSpacing="0.08"
+                android:text="GAME MENU"
+                android:textColor="#8024B538"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/game_menu_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_game_panel"
+            android:layout_marginBottom="18dp"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                android:id="@+id/gameMenuShowMemory_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_game_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_game_press">
+
+                <View
+                    android:id="@+id/sm_accent"
+                    android:layout_width="4dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_game_accent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/sm_accent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_game_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_memory"
+                            app:tint="#24B538" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="10dp">
+                        <TextView
+                            android:id="@+id/gameMenuShowMemory_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/setting_game_menu_show_memory_title"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/gameMenuShowMemory_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/setting_game_menu_show_memory_desc"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/gameMenuShowMemory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:showText="false"
+                        android:splitTrack="false"
+                        android:thumbTint="@color/game_switch_thumb"
+                        android:trackTint="@color/game_switch_track" />
+                </LinearLayout>
+            </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                android:id="@+id/gameMenuShowFPS_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_game_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_game_press">
+
+                <View
+                    android:id="@+id/fps_accent"
+                    android:layout_width="4dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_game_accent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/fps_accent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_game_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_speed"
+                            app:tint="#24B538" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="10dp">
+                        <TextView
+                            android:id="@+id/gameMenuShowFPS_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/setting_game_menu_show_fps_title"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/gameMenuShowFPS_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/setting_game_menu_show_fps_desc"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/gameMenuShowFPS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:showText="false"
+                        android:splitTrack="false"
+                        android:thumbTint="@color/game_switch_thumb"
+                        android:trackTint="@color/game_switch_track" />
+                </LinearLayout>
+            </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                android:id="@+id/gameMenuMemoryText_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_game_row"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_game_press">
+
+                <View
+                    android:id="@+id/mt_accent"
+                    android:layout_width="4dp"
+                    android:layout_height="52dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_game_accent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/mt_accent"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_game_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_text_format"
+                            app:tint="#24B538" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/gameMenuMemoryText_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/setting_game_menu_memory_text_title"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/gameMenuMemoryText_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/setting_game_menu_memory_text_desc"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="11sp" />
+
+                        <com.craftstudio.launcher.ui.view.AnimEditText
+                            android:id="@+id/gameMenuMemoryText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/bg_game_edittext"
+                            android:paddingStart="12dp"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="10dp"
+                            android:textColor="#FFFFFF"
+                            android:textColorHint="#44FFFFFF"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                android:id="@+id/gameMenuLocation_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_game_row"
+                android:minHeight="78dp"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_game_press">
+
+                <View
+                    android:id="@+id/ml_accent"
+                    android:layout_width="4dp"
+                    android:layout_height="44dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_game_accent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/ml_accent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_game_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_place"
+                            app:tint="#24B538" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingEnd="10dp">
+                        <TextView
+                            android:id="@+id/gameMenuLocation_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/setting_game_menu_location_title"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/gameMenuLocation_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/bg_game_value_chip"
+                            android:paddingStart="10dp"
+                            android:paddingTop="4dp"
+                            android:paddingEnd="10dp"
+                            android:paddingBottom="4dp"
+                            android:text="@string/setting_game_menu_location_center"
+                            android:textColor="#24B538"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/ic_chevron_right"
+                        app:tint="#4424B538" />
+                </LinearLayout>
+            </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                android:id="@+id/gameMenuInfoRefreshRate_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_game_row"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_game_press">
+
+                <View
+                    android:id="@+id/rr_accent"
+                    android:layout_width="4dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_game_accent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/rr_accent"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_game_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_refresh"
+                            app:tint="#24B538" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/gameMenuInfoRefreshRate_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/setting_game_menu_info_refresh_rate_title"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/gameMenuInfoRefreshRate_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/setting_game_menu_info_refresh_rate_desc"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="11sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <SeekBar
+                                android:id="@+id/gameMenuInfoRefreshRate"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="5000"
+                                android:min="500"
+                                android:progressTint="#24B538"
+                                android:thumbTint="#24B538" />
+                            <TextView
+                                android:id="@+id/gameMenuInfoRefreshRate_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/bg_game_value_chip"
+                                android:fontFamily="sans-serif-bold"
+                                android:paddingStart="12dp"
+                                android:paddingTop="6dp"
+                                android:paddingEnd="12dp"
+                                android:paddingBottom="6dp"
+                                android:textColor="#24B538"
+                                android:textSize="11sp"
+                                tools:text="1000 ms" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                android:id="@+id/gameMenuAlpha_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_game_row"
+                android:padding="14dp"
+                android:stateListAnimator="@animator/anim_game_press">
+
+                <View
+                    android:id="@+id/alpha_accent"
+                    android:layout_width="4dp"
+                    android:layout_height="56dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginTop="4dp"
+                    android:background="@drawable/bg_game_accent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_toEndOf="@id/alpha_accent"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:background="@drawable/bg_game_icon_circle">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_opacity"
+                            app:tint="#24B538" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/gameMenuAlpha_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/setting_game_menu_alpha_title"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp" />
+                        <TextView
+                            android:id="@+id/gameMenuAlpha_summary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/setting_game_menu_alpha_desc"
+                            android:textColor="#80FFFFFF"
+                            android:textSize="11sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+                            <SeekBar
+                                android:id="@+id/gameMenuAlpha"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:max="100"
+                                android:min="20"
+                                android:progressTint="#24B538"
+                                android:thumbTint="#24B538" />
+                            <TextView
+                                android:id="@+id/gameMenuAlpha_value"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/bg_game_value_chip"
+                                android:fontFamily="sans-serif-bold"
+                                android:paddingStart="12dp"
+                                android:paddingTop="6dp"
+                                android:paddingEnd="12dp"
+                                android:paddingBottom="6dp"
+                                android:textColor="#24B538"
+                                android:textSize="11sp"
+                                tools:text="80%" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/gameMenuPreview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_game_preview_holder"
+                android:padding="12dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <TextView
+                        android:id="@+id/memoryText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#24B538"
+                        android:textSize="10sp"
+                        tools:text="Memory: 0MB/0MB" />
+
+                    <TextView
+                        android:id="@+id/fpsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textColor="#24B538"
+                        android:textSize="10sp"
+                        tools:text="FPS: 60" />
+
+                </LinearLayout>
+
+            </FrameLayout>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
