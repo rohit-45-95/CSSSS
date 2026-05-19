@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_menu_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/account_operation_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.48" />
+
+    <!-- ===== LEFT PANEL: Accounts List ===== -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/account_menu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:background="@drawable/bg_accounts_main_panel"
+        android:padding="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/account_operation_guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Top amber glow line -->
+        <View
+            android:id="@+id/account_menu_top_glow"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="#33FFB74D"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Header: Title + Subtitle + Add Button + Tabs -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/account_type_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_accounts_header"
+            android:padding="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/account_menu_top_glow">
+
+            <!-- Icon -->
+            <ImageView
+                android:id="@+id/accounts_header_icon"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/bg_round_icon_action"
+                android:padding="@dimen/_8sdp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_friends"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FFB74D"
+                tools:ignore="ContentDescription" />
+
+            <!-- Title -->
+            <TextView
+                android:id="@+id/account_panel_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="ACCOUNTS"
+                android:textAllCaps="true"
+                android:textColor="#FFB74D"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                android:letterSpacing="0.08"
+                app:layout_constraintEnd_toStartOf="@id/add_server"
+                app:layout_constraintStart_toEndOf="@id/accounts_header_icon"
+                app:layout_constraintTop_toTopOf="@id/accounts_header_icon" />
+
+            <!-- Subtitle -->
+            <TextView
+                android:id="@+id/account_panel_subtitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:text="Switch between Microsoft and Local accounts"
+                android:textColor="#99E8EAF6"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toStartOf="@id/add_server"
+                app:layout_constraintStart_toEndOf="@id/accounts_header_icon"
+                app:layout_constraintTop_toBottomOf="@id/account_panel_title" />
+
+            <!-- More options button -->
+            <ImageView
+                android:id="@+id/add_server"
+                android:layout_width="@dimen/_36sdp"
+                android:layout_height="@dimen/_36sdp"
+                android:background="@drawable/bg_round_icon_action"
+                android:padding="@dimen/_8sdp"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_more"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FFB74D"
+                tools:ignore="ContentDescription" />
+
+            <!-- Tab buttons: Microsoft / Local -->
+            <com.angcyo.tablayout.DslTabLayout
+                android:id="@+id/account_type_tab"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:clipToPadding="false"
+                android:paddingVertical="@dimen/_2sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/account_panel_subtitle"
+                app:tab_deselect_color="#99E8EAF6"
+                app:tab_select_color="#FFB74D">
+
+                <!-- Microsoft Account Tab -->
+                <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                    android:id="@+id/add_microsoft_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:background="@drawable/bg_account_tab_item"
+                    android:minHeight="@dimen/_36sdp"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_7sdp">
+
+                    <ImageView
+                        android:id="@+id/add_microsoft_image"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_add"
+                        app:tint="#FFB74D"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/add_microsoft_image"
+                        android:paddingStart="@dimen/_6sdp"
+                        android:text="@string/account_microsoft_account"
+                        android:textColor="#E8EAF6"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold" />
+
+                </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+                <!-- Local Account Tab -->
+                <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                    android:id="@+id/add_local_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_account_tab_item"
+                    android:minHeight="@dimen/_36sdp"
+                    android:paddingHorizontal="@dimen/_12sdp"
+                    android:paddingVertical="@dimen/_7sdp">
+
+                    <ImageView
+                        android:id="@+id/add_local_image"
+                        android:layout_width="@dimen/_18sdp"
+                        android:layout_height="@dimen/_18sdp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_add"
+                        app:tint="#4CAF50"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@id/add_local_image"
+                        android:paddingStart="@dimen/_6sdp"
+                        android:text="@string/account_local_account"
+                        android:textColor="#E8EAF6"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold" />
+
+                </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            </com.angcyo.tablayout.DslTabLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Accounts RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/accounts_recycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/bg_accounts_list_surface"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:padding="@dimen/_8sdp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/account_type_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ===== RIGHT PANEL: Account Preview ===== -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/operation_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/account_operation_guideline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Amber divider line -->
+        <View
+            android:id="@+id/shadowView"
+            android:layout_width="2dp"
+            android:layout_height="0dp"
+            android:background="#33FFB74D"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Right panel content -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/operation_main_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:background="@drawable/bg_accounts_side_panel"
+            android:padding="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/shadowView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Header Row -->
+            <LinearLayout
+                android:id="@+id/operation_header_row"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- Amber marker bar -->
+                <View
+                    android:id="@+id/operation_header_marker"
+                    android:layout_width="4dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:background="@drawable/bg_amber_marker" />
+
+                <LinearLayout
+                    android:id="@+id/operation_header_text_holder"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/operation_header_small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SELECTED ACCOUNT"
+                        android:textAllCaps="true"
+                        android:textColor="#99E8EAF6"
+                        android:textSize="@dimen/_8ssp"
+                        android:letterSpacing="0.1"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/operation_header_big"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Account Preview"
+                        android:textColor="#FFB74D"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Desc -->
+            <TextView
+                android:id="@+id/operation_header_desc"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:text="Manage and review the currently selected account"
+                android:textColor="#66E8EAF6"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/operation_header_row" />
+
+            <!-- Divider -->
+            <View
+                android:id="@+id/operation_divider"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="#22FFB74D"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/operation_header_desc" />
+
+            <!-- Scrollable content -->
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/operation_scroll"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:overScrollMode="never"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toTopOf="@id/return_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/operation_divider">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/_4sdp">
+
+                    <!-- Account preview card -->
+                    <FrameLayout
+                        android:id="@+id/account_preview_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_accounts_preview_card"
+                        android:padding="1dp">
+
+                        <include
+                            android:id="@+id/view_account"
+                            layout="@layout/view_account" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <!-- Return Button -->
+            <com.craftstudio.launcher.ui.view.AnimButton
+                android:id="@+id/return_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/bg_gold_button_large"
+                android:text="@string/generic_return"
+                android:textAllCaps="true"
+                android:textColor="#151520"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
