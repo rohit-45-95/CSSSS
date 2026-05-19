@@ -30,6 +30,7 @@ import com.craftstudio.launcher.utils.file.FileTools.Companion.mkdirs
 import com.craftstudio.launcher.utils.image.ImageUtils.Companion.isImage
 import com.craftstudio.launcher.utils.stringutils.StringUtils
 import com.craftstudio.launcher.Tools
+import java.io.File
 
 class MouseImportFragment : Fragment() {
 
