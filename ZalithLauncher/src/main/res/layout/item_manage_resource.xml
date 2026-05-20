@@ -4,49 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginStart="14dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginEnd="14dp"
     android:layout_marginBottom="10dp"
     app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="22dp"
     app:cardElevation="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_addon_item_card"
-        android:minHeight="96dp"
-        android:padding="14dp"
-        android:stateListAnimator="@animator/anim_addon_item_press">
+        android:background="@drawable/bg_mod_item_card"
+        android:minHeight="100dp"
+        android:paddingStart="14dp"
+        android:paddingTop="14dp"
+        android:paddingEnd="14dp"
+        android:paddingBottom="14dp"
+        android:stateListAnimator="@animator/anim_mod_item_press">
 
         <View
             android:id="@+id/item_left_accent"
             android:layout_width="4dp"
             android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/bg_addon_accent_strip"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_mod_accent_green"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
+        <androidx.cardview.widget.CardView
             android:id="@+id/icon_holder"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="12dp"
-            android:background="@drawable/bg_addon_icon_holder"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="14dp"
+            app:cardBackgroundColor="#141414"
+            app:cardCornerRadius="14dp"
+            app:cardElevation="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/item_left_accent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/iv_icon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_logo"
-                app:tint="#24B538" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_logo" />
 
-        </FrameLayout>
+        </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/action_column"
@@ -58,6 +67,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <View
+                android:id="@+id/status_dot"
+                android:layout_width="8dp"
+                android:layout_height="8dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/bg_mod_status_dot_green" />
+
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_enable"
                 android:layout_width="wrap_content"
@@ -65,19 +81,19 @@
                 android:minHeight="0dp"
                 android:showText="false"
                 android:splitTrack="false"
-                app:switchMinWidth="48dp"
-                app:thumbTint="@color/addon_switch_thumb"
-                app:trackTint="@color/addon_switch_track" />
+                app:switchMinWidth="44dp"
+                app:thumbTint="@color/mod_switch_thumb"
+                app:trackTint="@color/mod_switch_track" />
 
             <ImageView
                 android:id="@+id/btn_delete"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/bg_addon_delete_btn"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_mod_delete_btn"
                 android:padding="7dp"
                 android:src="@drawable/ic_menu_delete_forever"
-                app:tint="#24B538" />
+                app:tint="#FF4444" />
 
         </LinearLayout>
 
@@ -99,24 +115,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
                 android:maxLines="2"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp"
-                android:textStyle="bold"
-                tools:text="Mesa Vulkan Renderer Pack" />
+                tools:text="OptiFine HD Ultra" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_mod_status_enabled"
+                android:fontFamily="sans-serif-bold"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
+                android:text="ENABLED"
+                android:textColor="#24B538"
+                android:textSize="9sp" />
 
             <TextView
                 android:id="@+id/tv_size"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/bg_addon_meta_chip"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_mod_meta_chip"
                 android:paddingStart="10dp"
-                android:paddingTop="5dp"
+                android:paddingTop="4dp"
                 android:paddingEnd="10dp"
-                android:paddingBottom="5dp"
-                android:textColor="#A7B4C5"
-                android:textSize="11sp"
+                android:paddingBottom="4dp"
+                android:textColor="#80FFFFFF"
+                android:textSize="10sp"
                 tools:text="12.6 MB" />
 
         </LinearLayout>
