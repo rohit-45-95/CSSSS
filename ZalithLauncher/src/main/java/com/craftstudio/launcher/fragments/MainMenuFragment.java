@@ -78,7 +78,18 @@ public class MainMenuFragment extends FragmentWithAnim {
         binding.aboutText.setText(InfoCenter.replaceName(requireActivity(), R.string.about_tab));
         binding.aboutButton.setOnClickListener(v -> ZHTools.swapFragmentWithAnim(this, SettingsFragment.class, SettingsFragment.TAG, null));
         binding.aboutButtonBottom.setOnClickListener(v -> ZHTools.swapFragmentWithAnim(this, AboutFragment.class, AboutFragment.TAG, null));
-        binding.modsButton.setOnClickListener(v -> ZHTools.swapFragmentWithAnim(this, com.craftstudio.launcher.ui.fragment.ManageModsFragment.class, com.craftstudio.launcher.ui.fragment.ManageModsFragment.TAG, null));
+        binding.modsButton.setOnClickListener(v -> {
+            Version version = VersionsManager.getCurrentVersion();
+            if (version != null) {
+                Bundle modsBundle = new Bundle();
+                modsBundle.putString(com.craftstudio.launcher.ui.fragment.ManageModsFragment.BUNDLE_ROOT_PATH,
+                        new java.io.File(version.getGameDir(), "mods").getAbsolutePath());
+                ZHTools.swapFragmentWithAnim(this, com.craftstudio.launcher.ui.fragment.ManageModsFragment.class,
+                        com.craftstudio.launcher.ui.fragment.ManageModsFragment.TAG, modsBundle);
+            } else {
+                Toast.makeText(requireContext(), R.string.version_manager_no_installed_version, Toast.LENGTH_SHORT).show();
+            }
+        });
         binding.customControlButton.setOnClickListener(v -> ZHTools.swapFragmentWithAnim(this, ControlButtonFragment.class, ControlButtonFragment.TAG, null));
         binding.openMainDirButton.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
@@ -93,7 +104,18 @@ public class MainMenuFragment extends FragmentWithAnim {
         binding.shareLogsButton.setOnClickListener(v -> ZHTools.shareLogs(requireActivity()));
         binding.premiumUpgradeCard.setOnClickListener(v -> openDownloadCenter());
         binding.upgradeNowButton.setOnClickListener(v -> openDownloadCenter());
-        binding.btnManageMods.setOnClickListener(v -> ZHTools.swapFragmentWithAnim(this, com.craftstudio.launcher.ui.fragment.ManageModsFragment.class, com.craftstudio.launcher.ui.fragment.ManageModsFragment.TAG, null));
+        binding.btnManageMods.setOnClickListener(v -> {
+            Version version = VersionsManager.getCurrentVersion();
+            if (version != null) {
+                Bundle modsBundle = new Bundle();
+                modsBundle.putString(com.craftstudio.launcher.ui.fragment.ManageModsFragment.BUNDLE_ROOT_PATH,
+                        new java.io.File(version.getGameDir(), "mods").getAbsolutePath());
+                ZHTools.swapFragmentWithAnim(this, com.craftstudio.launcher.ui.fragment.ManageModsFragment.class,
+                        com.craftstudio.launcher.ui.fragment.ManageModsFragment.TAG, modsBundle);
+            } else {
+                Toast.makeText(requireContext(), R.string.version_manager_no_installed_version, Toast.LENGTH_SHORT).show();
+            }
+        });
         binding.newModsCard.setOnClickListener(v -> openDownloadCenter());
         binding.exploreModsButton.setOnClickListener(v -> openDownloadCenter());
         binding.manageFeaturesButton.setOnClickListener(v -> showClientFeaturesDialog());
