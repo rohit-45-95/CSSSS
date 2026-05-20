@@ -79,7 +79,7 @@ public class MainMenuFragment extends FragmentWithAnim {
         binding.aboutButton.setOnClickListener(v -> ZHTools.swapFragmentWithAnim(this, SettingsFragment.class, SettingsFragment.TAG, null));
         binding.aboutButtonBottom.setOnClickListener(v -> ZHTools.swapFragmentWithAnim(this, AboutFragment.class, AboutFragment.TAG, null));
         binding.modsButton.setOnClickListener(v -> {
-            Version version = VersionsManager.getCurrentVersion();
+            Version version = VersionsManager.INSTANCE.getCurrentVersion();
             if (version != null) {
                 Bundle modsBundle = new Bundle();
                 modsBundle.putString(com.craftstudio.launcher.ui.fragment.ManageModsFragment.BUNDLE_ROOT_PATH,
@@ -105,7 +105,7 @@ public class MainMenuFragment extends FragmentWithAnim {
         binding.premiumUpgradeCard.setOnClickListener(v -> openDownloadCenter());
         binding.upgradeNowButton.setOnClickListener(v -> openDownloadCenter());
         binding.btnManageMods.setOnClickListener(v -> {
-            Version version = VersionsManager.getCurrentVersion();
+            Version version = VersionsManager.INSTANCE.getCurrentVersion();
             if (version != null) {
                 Bundle modsBundle = new Bundle();
                 modsBundle.putString(com.craftstudio.launcher.ui.fragment.ManageModsFragment.BUNDLE_ROOT_PATH,
