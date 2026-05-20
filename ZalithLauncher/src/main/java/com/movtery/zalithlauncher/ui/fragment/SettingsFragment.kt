@@ -19,6 +19,7 @@ import com.craftstudio.launcher.ui.fragment.settings.ExperimentalSettingsFragmen
 import com.craftstudio.launcher.ui.fragment.settings.GameSettingsFragment
 import com.craftstudio.launcher.ui.fragment.settings.LauncherSettingsFragment
 import com.craftstudio.launcher.ui.fragment.settings.VideoSettingsFragment
+import com.craftstudio.launcher.ui.fragment.CustomMouseFragment
 import com.craftstudio.launcher.utils.ZHTools
 import org.greenrobot.eventbus.EventBus
 
@@ -55,6 +56,15 @@ class SettingsFragment : FragmentWithAnim(R.layout.fragment_settings) {
         }
         binding.experimentalCard.setOnClickListener {
             openSettingPage(ExperimentalSettingsFragment::class.java)
+        }
+
+        binding.cursorCard.setOnClickListener {
+            ZHTools.swapFragmentWithAnim(
+                this,
+                CustomMouseFragment::class.java,
+                CustomMouseFragment.TAG,
+                null
+            )
         }
 
         binding.settingsTab.observeIndexChange { _, toIndex, reselect, fromUser ->
