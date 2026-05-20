@@ -5,6 +5,10 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.view.View
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.craftstudio.launcher.InfoCenter
@@ -29,6 +33,8 @@ class SplashActivity : BaseActivity() {
     private lateinit var binding: ActivitySplashBinding
     private lateinit var installableAdapter: InstallableAdapter
     private val items: MutableList<InstallableItem> = ArrayList()
+    private val handler = Handler(Looper.getMainLooper())
+    private var shimmerRunnable: Runnable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,18 +44,8 @@ class SplashActivity : BaseActivity() {
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.titleText.text = InfoDistributor.APP_NAME
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@SplashActivity)
-            adapter = installableAdapter
-        }
-
-        binding.startButton.apply {
-            setOnClickListener {
-                startInstallIfNeeded()
-            }
-            isClickable = false
-        }
+        startLogoAnimation()
+        startShimmerAnimation()
 
         if (!Tools.checkStorageRoot()) {
             startActivity(Intent(this, MissingStorageActivity::class.java))
@@ -57,25 +53,79 @@ class SplashActivity : BaseActivity() {
             return
         }
 
-        //如果安卓版本小于等于9，则检查存储权限（不是管理所有文件权限），拥有存储权限会保证文件、文件夹正常创建
-        //但是并不强制要求用户必须授予权限，如果用户拒绝，那么之后产生的问题将由用户承担
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.P && !StoragePermissionsUtils.hasStoragePermissions(this)) {
             TipDialog.Builder(this)
                 .setTitle(R.string.generic_warning)
                 .setMessage(InfoCenter.replaceName(this, R.string.permissions_write_external_storage))
                 .setWarning()
                 .setConfirmClickListener { requestStoragePermissions() }
-                .setCancelClickListener { checkEnd() } //用户取消，那就跟随用户的意愿
+                .setCancelClickListener { checkEnd() }
                 .showDialog()
         } else {
             checkEnd()
         }
     }
 
+    private fun startLogoAnimation() {
+        binding.ivLogo.apply {
+            scaleX = 0.9f
+            scaleY = 0.9f
+            alpha = 0.8f
+            animate()
+                .scaleX(1.1f)
+                .scaleY(1.1f)
+                .alpha(1f)
+                .setDuration(1200)
+                .setInterpolator(AccelerateDecelerateInterpolator())
+                .withEndAction {
+                    animate()
+                        .scaleX(0.95f)
+                        .scaleY(0.95f)
+                        .alpha(0.9f)
+                        .setDuration(1200)
+                        .setInterpolator(AccelerateDecelerateInterpolator())
+                        .withEndAction { startLogoAnimation() }
+                        .start()
+                }
+                .start()
+        }
+    }
+
+    private fun startShimmerAnimation() {
+        val shimmerView = binding.progressBar.findViewById<View>(R.id.progress_shimmer) ?: return
+        shimmerRunnable = object : Runnable {
+            override fun run() {
+                shimmerView.apply {
+                    translationX = -width.toFloat()
+                    animate()
+                        .translationX(parent<View>().width.toFloat())
+                        .setDuration(1500)
+                        .setInterpolator(AccelerateDecelerateInterpolator())
+                        .withEndAction { this@Runnable.run() }
+                        .start()
+                }
+            }
+        }
+        handler.post(shimmerRunnable!!)
+    }
+
+    private fun updateProgress(progress: Int, status: String) {
+        handler.post {
+            binding.tvStatus.text = status
+            binding.tvPercent.text = "$progress%"
+
+            binding.progressBar.findViewById<View>(R.id.progress_fill)?.let { fill ->
+                fill.layoutParams = fill.layoutParams.apply {
+                    width = (binding.progressBar.width * progress / 100)
+                }
+            }
+        }
+    }
+
     private fun startInstallIfNeeded() {
         if (isStarted) return
         isStarted = true
-        binding.splashText.setText(R.string.splash_screen_installing)
+        updateProgress(0, getString(R.string.splash_screen_installing))
         installableAdapter.startAllTasks()
     }
 
@@ -94,8 +144,6 @@ class SplashActivity : BaseActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == STORAGE_PERMISSION_REQUEST_CODE) {
-            //无论用户是否授予了权限，都会完成检查，因为启动器并不强制要求权限
-            //但是一旦因为存储权限出现了问题，那么将由用户自行承担后果
             checkEnd()
         }
     }
@@ -137,7 +185,6 @@ class SplashActivity : BaseActivity() {
             UnpackSingleFilesTask(this).run()
         }.execute()
 
-        binding.startButton.isClickable = true
         startInstallIfNeeded()
     }
 
@@ -147,6 +194,11 @@ class SplashActivity : BaseActivity() {
     }
 
     companion object {
-        private const val STORAGE_PERMISSION_REQUEST_CODE: Int = 100
+        private const val STORAGE_PERMISSION_REQUEST_CODE = 1
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        shimmerRunnable?.let { handler.removeCallbacks(it) }
     }
 }
