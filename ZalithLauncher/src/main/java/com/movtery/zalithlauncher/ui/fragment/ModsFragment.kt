@@ -241,9 +241,6 @@ class ModsFragment : FragmentWithAnim(R.layout.fragment_mods) {
             fileRecyclerView.lockAndListAt(File(mRootPath), File(mRootPath))
         }
 
-        // Update mod count
-        updateModCount()
-
         startNewbieGuide()
     }
 

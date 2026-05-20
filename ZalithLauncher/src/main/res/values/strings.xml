@@ -27,6 +27,8 @@
     <string name="generic_confirm">Confirm</string>
     <string name="generic_unknown">Unknown</string>
     <string name="generic_warning">Warning</string>
+    <string name="generic_confirm_delete">Are you sure you want to delete %s?</string>
+    <string name="generic_confirm_delete_multiple">Are you sure you want to delete %d mods?</string>
     <string name="generic_ok">OK</string>
     <string name="generic_error">Error</string>
     <string name="generic_load">Load</string>

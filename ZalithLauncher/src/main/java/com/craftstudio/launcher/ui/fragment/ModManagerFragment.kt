@@ -1,6 +1,5 @@
 package com.craftstudio.launcher.ui.fragment
 
-import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,13 +19,9 @@ import com.craftstudio.launcher.task.Task
 import com.craftstudio.launcher.task.TaskExecutors
 import com.craftstudio.launcher.Tools
 import com.craftstudio.launcher.ui.adapter.ModManagerAdapter
-import com.craftstudio.launcher.ui.dialog.FilesDialog
-import com.craftstudio.launcher.ui.dialog.FilesDialog.FilesButton
 import com.craftstudio.launcher.ui.dialog.ModInfoDialog
 import com.craftstudio.launcher.utils.ZHTools
 import com.craftstudio.launcher.utils.file.FileTools
-import com.craftstudio.launcher.utils.file.PasteFile
-import com.craftstudio.launcher.utils.path.PathManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 
@@ -94,9 +89,7 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
                     this@ModManagerFragment,
                     DownloadModFragment::class.java,
                     DownloadModFragment.TAG,
-                    Bundle().apply {
-                        putString(DownloadModFragment.BUNDLE_VERSION_ID, version.id)
-                    }
+                    Bundle()
                 )
             }
 
@@ -162,49 +155,36 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
     }
 
     private fun showModMenu(mod: ModInfo, view: View) {
-        val filesButton = FilesButton()
-        filesButton.setButtonVisibility(true, true, true, false, true, true)
-        filesButton.setMessageText(getString(R.string.mod_info_title))
-
-        val dialog = FilesDialog(requireContext(), filesButton,
-            Task.runTask(TaskExecutors.getAndroidUI()) { loadMods() },
-            mod.file?.parentFile ?: File(PathManager.DIR_GAME), mod.file!!
+        val isEnabled = mod.file?.name?.endsWith(ModUtils.JAR_FILE_SUFFIX) == true
+        val options = arrayOf(
+            if (isEnabled) getString(R.string.mods_disable) else getString(R.string.mods_enable),
+            getString(R.string.mods_info_title),
+            getString(R.string.mods_delete)
         )
 
-        if (mod.file?.name?.endsWith(ModUtils.JAR_FILE_SUFFIX) == true) {
-            filesButton.setMoreButtonText(getString(R.string.mods_disable))
-            dialog.setMoreButtonClick {
-                ModUtils.disableMod(mod.file)
-                loadMods()
-                dialog.dismiss()
-            }
-        } else {
-            filesButton.setMoreButtonText(getString(R.string.mods_enable))
-            dialog.setMoreButtonClick {
-                ModUtils.enableMod(mod.file)
-                loadMods()
-                dialog.dismiss()
-            }
-        }
-
-        filesButton.setCopyButtonText(getString(R.string.mods_info_title))
-        dialog.setCopyButtonClick { showModInfoDialog(mod) }
-
-        filesButton.setDeleteButtonText(getString(R.string.mods_delete))
-        dialog.setDeleteButtonClick {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle(R.string.generic_warning)
-                .setMessage(getString(R.string.generic_confirm_delete, mod.name ?: mod.file?.name))
-                .setPositiveButton(R.string.generic_yes) { _, _ ->
-                    mod.file?.delete()
-                    loadMods()
-                    dialog.dismiss()
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle(mod.name ?: mod.file?.name)
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> {
+                        if (isEnabled) ModUtils.disableMod(mod.file) else ModUtils.enableMod(mod.file)
+                        loadMods()
+                    }
+                    1 -> showModInfoDialog(mod)
+                    2 -> {
+                        MaterialAlertDialogBuilder(requireContext())
+                            .setTitle(R.string.generic_warning)
+                            .setMessage(getString(R.string.generic_confirm_delete, mod.name ?: mod.file?.name))
+                            .setPositiveButton(R.string.generic_yes) { _, _ ->
+                                mod.file?.delete()
+                                loadMods()
+                            }
+                            .setNegativeButton(R.string.generic_no, null)
+                            .show()
+                    }
                 }
-                .setNegativeButton(R.string.generic_no, null)
-                .show()
-        }
-
-        dialog.show()
+            }
+            .show()
     }
 
     private fun showModInfoDialog(mod: ModInfo) {
