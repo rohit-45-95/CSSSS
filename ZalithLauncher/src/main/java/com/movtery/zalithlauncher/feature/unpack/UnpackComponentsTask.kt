@@ -55,7 +55,7 @@ class UnpackComponentsTask(val context: Context, val component: Components) : Ab
 
     override fun run() {
         listener?.onTaskStart()
-        val fileList = am.list("components/${component.component}")
+        val fileList = am.list("components/${component.component}") ?: emptyArray()
         val totalFiles = fileList.size
         if (totalFiles == 0) {
             listener?.onTaskEnd()
