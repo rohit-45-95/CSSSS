@@ -31,6 +31,7 @@ import com.craftstudio.launcher.ui.fragment.AboutFragment;
 import com.craftstudio.launcher.ui.fragment.ControlButtonFragment;
 import com.craftstudio.launcher.ui.fragment.DownloadFragment;
 import com.craftstudio.launcher.ui.fragment.FilesFragment;
+import com.craftstudio.launcher.ui.fragment.CursorStudioFragment;
 import com.craftstudio.launcher.ui.fragment.FragmentWithAnim;
 import com.craftstudio.launcher.ui.fragment.OfflineAccountSettingsFragment;
 import com.craftstudio.launcher.ui.fragment.SettingsFragment;
@@ -152,8 +153,8 @@ public class MainMenuFragment extends FragmentWithAnim {
         if (EventPopupDialog.Companion.shouldShow(requireContext())) {
             new EventPopupDialog(requireContext(), () -> {
                 ZHTools.swapFragmentWithAnim(this,
-                        com.movtery.zalithlauncher.ui.fragment.CursorStudioFragment.class,
-                        com.movtery.zalithlauncher.ui.fragment.CursorStudioFragment.TAG,
+                        CursorStudioFragment.class,
+                        CursorStudioFragment.TAG,
                         null);
                 return null;
             }).show();
