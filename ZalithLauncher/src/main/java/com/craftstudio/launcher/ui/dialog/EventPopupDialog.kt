@@ -3,6 +3,7 @@ package com.craftstudio.launcher.ui.dialog
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
@@ -47,10 +48,17 @@ class EventPopupDialog(
 
     companion object {
         private const val KEY_DONT_SHOW = "dont_show_events"
+        private var isPromoShownThisSession = false
 
         fun shouldShow(context: Context): Boolean {
-            return !context.getSharedPreferences("event_popup_prefs", Context.MODE_PRIVATE)
+            if (isPromoShownThisSession) return false
+            val permanentlyDismissed = context.getSharedPreferences("event_popup_prefs", Context.MODE_PRIVATE)
                 .getBoolean(KEY_DONT_SHOW, false)
+            return !permanentlyDismissed
+        }
+
+        fun markShownThisSession() {
+            isPromoShownThisSession = true
         }
     }
 
@@ -58,9 +66,16 @@ class EventPopupDialog(
         super.onCreate(savedInstanceState)
         setContentView(R.layout.dialog_event_popup)
 
+        markShownThisSession()
+
+        val displayMetrics = context.resources.displayMetrics
+        val screenWidth = displayMetrics.widthPixels
+        val dialogWidth = (screenWidth * 0.92).toInt()
+
         window?.apply {
-            setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+            setLayout(dialogWidth, WindowManager.LayoutParams.WRAP_CONTENT)
             setGravity(Gravity.CENTER)
+            setBackgroundDrawableResource(android.R.color.transparent)
             setDimAmount(0f)
         }
 
@@ -134,8 +149,17 @@ class EventPopupDialog(
         val item = popupQueue[currentIndex]
         promoImage.setImageResource(item.imageRes)
         promoTitle.text = item.title
-        checkboxDontShow.isChecked = dontShowAgain
         actionClicked = false
+
+        val isLastPopup = currentIndex == popupQueue.size - 1
+        checkboxDontShow.visibility = if (isLastPopup) View.VISIBLE else View.GONE
+
+        if (isLastPopup) {
+            checkboxDontShow.isChecked = dontShowAgain
+            checkboxDontShow.setTextColor(Color.parseColor("#24B538"))
+            checkboxDontShow.textSize = 16f
+            checkboxDontShow.setTypeface(null, android.graphics.Typeface.BOLD)
+        }
 
         // Entrance animation
         cardView.visibility = View.INVISIBLE
@@ -147,6 +171,10 @@ class EventPopupDialog(
     }
 
     private fun dismissAndAdvance() {
+        if (currentIndex == popupQueue.size - 1 && dontShowAgain) {
+            savePreference()
+        }
+
         val exitAnim = AnimationUtils.loadAnimation(context, R.anim.event_popup_exit)
         exitAnim.setAnimationListener(object : Animation.AnimationListener {
             override fun onAnimationStart(animation: Animation?) {}

@@ -75,19 +75,19 @@
                 android:background="#3324B538"
                 android:layout_marginBottom="@dimen/_8sdp" />
 
-            <!-- Do Not Show Again Checkbox -->
+            <!-- Do Not Show Again Checkbox (only visible on 3rd popup) -->
             <CheckBox
                 android:id="@+id/checkbox_dont_show"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/bg_event_popup_checkbox"
                 android:text="Do not show again"
-                android:textColor="#808080"
-                android:textSize="@dimen/_11ssp"
-                android:paddingStart="@dimen/_4sdp"
-                android:minHeight="0dp"
-                android:minWidth="0dp"
-                android:buttonTint="@null" />
+                android:textColor="#24B538"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                android:paddingStart="@dimen/_8sdp"
+                android:buttonTint="@null"
+                android:visibility="gone" />
 
         </LinearLayout>
 
