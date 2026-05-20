@@ -343,6 +343,28 @@
     <string name="manage_mods">Manage Mods</string>
 
     <!-- ══════════════════════════════════════════ -->
+    <!--          🎮 MOD MANAGER                    -->
+    <!-- ══════════════════════════════════════════ -->
+    <string name="mods_manager_title">Mod Manager</string>
+    <string name="mods_total_count">Total Mods: %d</string>
+    <string name="mods_enabled_count">Enabled: %d</string>
+    <string name="mods_disabled_count">Disabled: %d</string>
+    <string name="mods_enable_selected">Enable Selected</string>
+    <string name="mods_disable_selected">Disable Selected</string>
+    <string name="mods_empty_state">No mods found. Add mods or download from the internet.</string>
+    <string name="mods_enable">Enable Mod</string>
+    <string name="mods_disable">Disable Mod</string>
+    <string name="mods_delete">Delete Mod</string>
+    <string name="mods_info_title">Mod Information</string>
+    <string name="mods_info_name">Name: %s</string>
+    <string name="mods_info_version">Version: %s</string>
+    <string name="mods_info_author">Author: %s</string>
+    <string name="mods_info_description">Description: %s</string>
+    <string name="mods_info_size">Size: %s</string>
+    <string name="mods_info_file">File: %s</string>
+    <string name="mods_refresh_failed">Failed to refresh mods</string>
+
+    <!-- ══════════════════════════════════════════ -->
     <!--          👤 ACCOUNT                        -->
     <!-- ══════════════════════════════════════════ -->
     <string name="account_login_done">Login Complete</string>

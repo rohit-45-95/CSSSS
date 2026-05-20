@@ -32,6 +32,7 @@ import com.craftstudio.launcher.utils.file.FileTools
 import com.craftstudio.launcher.utils.file.PasteFile
 import com.craftstudio.launcher.Tools
 import com.craftstudio.launcher.contracts.OpenDocumentWithExtension
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.io.File
 import java.util.function.Consumer
 
@@ -240,6 +241,9 @@ class ModsFragment : FragmentWithAnim(R.layout.fragment_mods) {
             fileRecyclerView.lockAndListAt(File(mRootPath), File(mRootPath))
         }
 
+        // Update mod count
+        updateModCount()
+
         startNewbieGuide()
     }
 
@@ -286,6 +290,26 @@ class ModsFragment : FragmentWithAnim(R.layout.fragment_mods) {
             DownloadFragment.TAG,
             null
         )
+    }
+
+    private fun showModInfo(file: File) {
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+            .setTitle(getString(R.string.mods_info_title))
+            .setMessage(buildModInfoString(file))
+            .setPositiveButton(R.string.generic_close, null)
+            .show()
+    }
+
+    private fun buildModInfoString(file: File): String {
+        val isEnabled = file.name.endsWith(ModUtils.JAR_FILE_SUFFIX)
+        val status = if (isEnabled) "Enabled" else "Disabled"
+
+        return """
+            Name: ${file.name}
+            Status: $status
+            Size: ${java.text.DecimalFormat("#.##").format(file.length().toDouble() / (1024 * 1024))} MB
+            Path: ${file.absolutePath}
+        """.trimIndent()
     }
 
     private fun parseBundle() {

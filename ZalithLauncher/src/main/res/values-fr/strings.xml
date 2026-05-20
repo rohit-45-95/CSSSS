@@ -79,8 +79,8 @@
     <string name="version_beta">Version Beta</string>
     <string name="force_exit_confirm">Êtes-vous sûr de vouloir forcer la fermeture ?</string>
     <string name="autoram_info_msg">La mémoire a été réglée à %d Mo</string>
-    <string name="memory_warning_msg">La mémoire disponible actuelle (%d) est inférieure à la mémoire allouée (%d), ce qui pourrait entraîner un plantage du jeu. Si le jeu plante, veuillez modifier la configuration !</string>
-    <string name="address_memory_warning_msg">L\'espace mémoire libre disponible (%d) est inférieur à la mémoire allouée (%d), ce qui entraînera un plantage. Si le jeu plante, veuillez ajuster l\'allocation de mémoire.</string>
+    <string name="memory_warning_msg" formatted="false">La mémoire disponible actuelle (%d) est inférieure à la mémoire allouée (%d), ce qui pourrait entraîner un plantage du jeu. Si le jeu plante, veuillez modifier la configuration !</string>
+    <string name="address_memory_warning_msg" formatted="false">L\'espace mémoire libre disponible (%d) est inférieur à la mémoire allouée (%d), ce qui entraînera un plantage. Si le jeu plante, veuillez ajuster l\'allocation de mémoire.</string>
     <string name="notif_channel_name">Général</string>
     <string name="lazy_service_default_title">Service de Réception %s</string>
     <string name="progresslayout_tasks_in_progress">%d tâches en cours</string>
@@ -105,13 +105,13 @@
     <string name="notif_download_finished">Le jeu est prêt à être lancé</string>
     <string name="notif_download_finished_desc">Cliquez ici pour le lancer !</string>
     <string name="notification_permission_dialog_title">Demande d\'autorisation</string>
-    <string name="notification_permission_dialog_text">%s a besoin de l\'autorisation de publier des notifications pour empêcher l\'arrêt du téléchargement des fichiers du jeu lorsque vous quittez l\'application. Sans cette autorisation, Android pourrait arrêter votre progression de téléchargement lorsque vous mettez %s en arrière-plan.</string>
+    <string name="notification_permission_dialog_text" formatted="false">%s a besoin de l\'autorisation de publier des notifications pour empêcher l\'arrêt du téléchargement des fichiers du jeu lorsque vous quittez l\'application. Sans cette autorisation, Android pourrait arrêter votre progression de téléchargement lorsque vous mettez %s en arrière-plan.</string>
     <string name="notification_permission_toast">Vous pouvez changer d\'avis à tout moment en accédant aux \"Paramètres système\"</string>
     <string name="newdl_starting">Lecture des métadonnées du jeu en cours…</string>
     <string name="newdl_downloading_metadata">Téléchargement des métadonnées du jeu en cours (%s)</string>
-    <string name="newdl_downloading_game_files">Téléchargement des fichiers du jeu… (%d/%d, %.2f MB)</string>
+    <string name="newdl_downloading_game_files" formatted="false">Téléchargement des fichiers du jeu… (%d/%d, %.2f MB)</string>
     <string name="newdl_downloading_game_files_size">Téléchargement des fichiers du jeu… (%.2f/%.2f Mo, %.2f Mo/s)</string>
-    <string name="newdl_extracting_native_libraries">Extraction des bibliothèques natives (%d/%d)</string>
+    <string name="newdl_extracting_native_libraries" formatted="false">Extraction des bibliothèques natives (%d/%d)</string>
     <string name="log_view_button_scroll_off">Défilement automatique : Désactivé</string>
     <string name="log_view_button_scroll_on">Défilement automatique : Activé</string>
     <string name="log_view_button_output_off">Sortie : Désactivé</string>
@@ -127,7 +127,7 @@
     <string name="mod_failed_to_load_list">Échec du chargement de la liste des versions !</string>
     <string name="mod_optifine_progress">Téléchargement de %s</string>
     <string name="mod_check_dialog_title">Rapport de vérification des mods</string>
-    <string name="mod_check_progress_message">Vérification des mods (%d / %d)</string>
+    <string name="mod_check_progress_message" formatted="false">Vérification des mods (%d / %d)</string>
     <string name="mod_check_touch_controller">Détection du mod Touch Controller (%s) installé, le lanceur est prêt à activer le proxy de contrôle pour adapter le mod.</string>
     <string name="mod_check_sodium_or_embeddium">Sodium ou Embeddium mod détecté (%s). Le lanceur désactivera les avertissements de ce mod ou empêchera son plantage intentionnel sur les appareils Android. Cependant, veuillez noter que la communauté du mod a explicitement déclaré qu\'elle ne prendra plus en charge les problèmes liés aux appareils Android. Par conséquent, si vous rencontrez des problèmes avec ce mod, ne les signalez pas à la communauté du mod !</string>
     <string name="mod_check_physics">Le mod physique utilisé actuellement (%s) n\'est pas patché (libPhysXJniBindings_64.so est remplacé de l\'architecture x86_64 à arm64), il va planter au lancement.</string>
@@ -135,7 +135,7 @@
     <string name="mod_check_valkyrien_skies">Valkyrien Skies/Valkyrien Warfare (%s) ne peut pas s\'exécuter directement en mode solo. Vous devez l\'exécuter sur un serveur (Termux peut être utilisé), sinon le jeu plantera.</string>
     <string name="mod_check_yes_steve_model">Yes Steve Model (%s) 2.2.2–2.5.1 ne peut pas fonctionner sur Android.</string>
     <string name="mod_check_imblocker">IMBlocker/In-GameIME (%s) n\'est pas compatible avec Android et fera planter le jeu au démarrage.</string>
-    <string name="mod_check_replay_mod">ReplayMod (%s) nécessite FFmpeg pour rendre les vidéos. Veuillez installer le plugin FFmpeg séparément\n%s\n%s</string>
+    <string name="mod_check_replay_mod" formatted="false">ReplayMod (%s) nécessite FFmpeg pour rendre les vidéos. Veuillez installer le plugin FFmpeg séparément\n%s\n%s</string>
     <string name="mod_check_borderlesswindow">Borderless Window (%s) n\'est pas compatible avec Android et fera planter le jeu au démarrage.</string>
     <!-- Controls -->
     <string name="control_primary">Clic gauche</string>
@@ -255,7 +255,7 @@
     <!-- Permissions -->
     <string name="permissions_manage_external_storage">%s nécessite l\'autorisation de gérer tous les fichiers de l\'appareil pour fonctionner correctement. Veuillez activer les autorisations !</string>
     <string name="permissions_write_external_storage">%s nécessite l\'autorisation de gestion du stockage. Si l\'autorisation n\'est pas activée, cela peut entraîner des problèmes tels que l\'échec de l\'enregistrement ou de la décompression des fichiers de jeu. Veuillez accorder l\'autorisation pour assurer le bon fonctionnement.</string>
-    <string name="permissions_storage_for_renderer_config">Le plugin de rendu %s peut avoir des paramètres. Si %s n\'a pas l\'accès au stockage, ils ne seront pas lus. Veuillez autoriser l\'accès.</string>
+    <string name="permissions_storage_for_renderer_config" formatted="false">Le plugin de rendu %s peut avoir des paramètres. Si %s n\'a pas l\'accès au stockage, ils ne seront pas lus. Veuillez autoriser l\'accès.</string>
     <!-- Profiles Path -->
     <string name="profiles_path_title">Gestion du chemin du jeu</string>
     <string name="profiles_path_default">Chemin par défaut</string>
@@ -337,7 +337,7 @@
     <string name="custom_mouse_added">Souris virtuelle définie avec succès :</string>
     <string name="custom_mouse_default">Souris virtuelle par défaut</string>
     <string name="custom_mouse_title">Souris virtuelle personnalisée</string>
-    <string name="custom_mouse_dialog">Vous pouvez ajouter des images de souris dans (Paramètres du lanceur - %s - %s)</string>
+    <string name="custom_mouse_dialog" formatted="false">Vous pouvez ajouter des images de souris dans (Paramètres du lanceur - %s - %s)</string>
     <string name="custom_mouse_desc">Ouvrir l\'interface de gestion de la souris virtuelle, vous pouvez ajouter vos propres textures de souris virtuelles préférées et les utiliser</string>
     <string name="custom_mouse_message_default">La souris virtuelle actuellement sélectionnée est la souris virtuelle par défaut, les opérations de partage, de renommage et de suppression ne sont pas prises en charge</string>
     <string name="custom_background_add">Ajouter une image de fond</string>
@@ -372,10 +372,10 @@
     <string name="file_multi_select_mode">Activer le mode de sélection multiple</string>
     <string name="file_multi_select_mode_title">Sélection multiple</string>
     <string name="file_multi_select_mode_message">Un total de %d éléments ont été sélectionnés</string>
-    <string name="file_operation_file">Opération sur le fichier en cours… (%s / %s, %d)</string>
+    <string name="file_operation_file" formatted="false">Opération sur le fichier en cours… (%s / %s, %d)</string>
     <string name="file_jump_to_path">Aller au chemin</string>
     <string name="file_nothing">Aucun fichier trouvé !</string>
-    <string name="file_invalid_length">Nom trop long ! (Longueur actuelle : %d, Longueur maximale : %d)</string>
+    <string name="file_invalid_length" formatted="false">Nom trop long ! (Longueur actuelle : %d, Longueur maximale : %d)</string>
     <!-- Search View -->
     <string name="search_case_sensitive">Sensible à la casse</string>
     <string name="search_only_show_results">Afficher uniquement les résultats de la recherche</string>
@@ -468,7 +468,7 @@
     <string name="setting_java_args_desc">Paramètres JVM supplémentaires ajoutés au démarrage de Minecraft. Il est déconseillé de les modifier sans être certain, car cela pourrait entraîner un plantage du jeu</string>
     <string name="setting_java_memory_title">Allocation de mémoire</string>
     <string name="setting_java_memory_desc">Contrôler la quantité de mémoire allouée à Minecraft</string>
-    <string name="setting_java_memory_info">Informations actuelles sur l\'utilisation de la mémoire : %s / %s, mémoire libre : %s</string>
+    <string name="setting_java_memory_info" formatted="false">Informations actuelles sur l\'utilisation de la mémoire : %s / %s, mémoire libre : %s</string>
     <string name="setting_java_memory_exceeded">L\'espace mémoire actuellement défini dépasse la taille de la mémoire disponible</string>
     <string name="setting_java_sandbox_title">Activer le gestionnaire de sécurité sandbox</string>
     <string name="setting_java_sandbox_desc">Activer ou non le gestionnaire de sécurité sandbox lors de l\'exécution de fichiers .jar</string>
@@ -575,7 +575,7 @@
     <string name="download_search_no_result">Aucune ressource correspondante trouvée!</string>
     <string name="download_search_platform_not_supported">La plateforme actuelle ne prend pas en charge le téléchargement de ce type de ressource ou ce filtre de catégorie!</string>
     <string name="download_install_custom_name">Nom de Fichier Personnalisé</string>
-    <string name="download_install_download_file">Téléchargement du fichier de ressources (%.2fMB / %.2fMB, vitesse : %s/s)</string>
+    <string name="download_install_download_file" formatted="false">Téléchargement du fichier de ressources (%.2fMB / %.2fMB, vitesse : %s/s)</string>
     <string name="download_install_dependencies">%s a les dépendances suivantes ou des mods incompatibles</string>
     <string name="download_install_dependencies_tip">Veuillez télécharger les mods de dépendance requis selon vos besoins. L\'absence de dépendances essentielles ou l\'installation de mods incompatibles peut empêcher le jeu de fonctionner !</string>
     <string name="download_install_dependencies_required">Requis</string>
@@ -590,11 +590,11 @@
     <!-- ModPack -->
     <string name="select_modpack_local_tip">Veuillez sélectionner un fichier de pack compatible avec l\'importation du lanceur !</string>
     <string name="select_modpack_local_not_supported">Ce modpack n\'est pas pris en charge par le lanceur! Le lanceur ne supporte que l\'importation de modpacks au format Modrinth, CurseForge et MCBBS. Veuillez vérifier si votre modpack est créé selon les formats spécifiés!</string>
-    <string name="select_modpack_local_installing_files">Installation des fichiers du jeu… (%d / %d)</string>
-    <string name="modpack_download_downloading_metadata">Téléchargement des métadonnées du modpack (%.2fMB / %.2fMB, vitesse : %s/s)</string>
-    <string name="modpack_download_downloading_mods">Téléchargement des mods (%.2fMB / %.2fMB, vitesse : %s/s)</string>
-    <string name="modpack_download_downloading_mods_fc">Téléchargement des mods (fichiers téléchargés: %d (%s), nombre total de fichiers: %d, vitesse: %s/s)</string>
-    <string name="modpack_download_applying_overrides">Application des remplacements (%d/%d)</string>
+    <string name="select_modpack_local_installing_files" formatted="false">Installation des fichiers du jeu… (%d / %d)</string>
+    <string name="modpack_download_downloading_metadata" formatted="false">Téléchargement des métadonnées du modpack (%.2fMB / %.2fMB, vitesse : %s/s)</string>
+    <string name="modpack_download_downloading_mods" formatted="false">Téléchargement des mods (%.2fMB / %.2fMB, vitesse : %s/s)</string>
+    <string name="modpack_download_downloading_mods_fc" formatted="false">Téléchargement des mods (fichiers téléchargés: %d (%s), nombre total de fichiers: %d, vitesse: %s/s)</string>
+    <string name="modpack_download_applying_overrides" formatted="false">Application des remplacements (%d/%d)</string>
     <string name="modpack_install_download_failed">Échec du téléchargement du fichier du modpack</string>
     <string name="modpack_prepare_mod_loader_installation">Tous les mods ont été installés, en préparation de l\'installation du chargeur de mods</string>
     <!-- Clear Up -->
@@ -615,7 +615,7 @@
     <string name="update_fail">Problème de réseau, impossible de vérifier les mises à jour pour le moment !</string>
     <string name="update_fail_code">Problème de réseau, impossible de vérifier les mises à jour pour le moment ! Code d\'erreur : %d</string>
     <string name="update_success">Le paquet d\'installation le plus récent a été téléchargé, voulez-vous l\'installer ? Emplacement du paquet d\'installation :</string>
-    <string name="update_downloading">Téléchargement du paquet d\'installation… (%s / %s)</string>
+    <string name="update_downloading" formatted="false">Téléchargement du paquet d\'installation… (%s / %s)</string>
     <string name="update_downloading_tip">En cours de récupération, source de mise à jour : %s</string>
     <!-- Other Login -->
     <string name="other_login_server">Serveur Auth</string>
