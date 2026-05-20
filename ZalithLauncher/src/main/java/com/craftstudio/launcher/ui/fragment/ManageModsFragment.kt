@@ -53,7 +53,7 @@ class ManageModsFragment : FragmentWithAnim() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         adapter = ManageResourceAdapter(
-            emptyList(),
+            mutableListOf(),
             onToggle = { item, isEnabled ->
                 try {
                     if (isEnabled) {
