@@ -25,6 +25,7 @@ import com.craftstudio.launcher.feature.version.utils.VersionIconUtils;
 import com.craftstudio.launcher.feature.version.VersionInfo;
 import com.craftstudio.launcher.feature.version.VersionsManager;
 import com.craftstudio.launcher.task.TaskExecutors;
+import com.craftstudio.launcher.ui.dialog.EventPopupDialog;
 import com.craftstudio.launcher.ui.dialog.TipDialog;
 import com.craftstudio.launcher.ui.fragment.AboutFragment;
 import com.craftstudio.launcher.ui.fragment.ControlButtonFragment;
@@ -146,6 +147,17 @@ public class MainMenuFragment extends FragmentWithAnim {
         binding.versionInfo.setSelected(true);
 
         refreshCurrentVersion();
+
+        // Show event popups on dashboard load
+        if (EventPopupDialog.Companion.shouldShow(requireContext())) {
+            new EventPopupDialog(requireContext(), () -> {
+                ZHTools.swapFragmentWithAnim(this,
+                        com.movtery.zalithlauncher.ui.fragment.CursorStudioFragment.class,
+                        com.movtery.zalithlauncher.ui.fragment.CursorStudioFragment.TAG,
+                        null);
+                return null;
+            }).show();
+        }
     }
 
     private void refreshProfileCard() {

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/event_popup_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B3000000"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Card Container -->
+    <LinearLayout
+        android:id="@+id/event_card"
+        android:layout_width="@dimen/_300sdp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_event_popup"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:clipToPadding="false">
+
+        <!-- Close Button (overlaps top-right of image) -->
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:padding="6dp"
+            android:src="@drawable/ic_close"
+            android:tint="#FFFFFF"
+            android:background="@drawable/btn_icon_bg"
+            android:elevation="6dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Close" />
+
+        <!-- Promo Image (top 70%, clickable) -->
+        <ImageView
+            android:id="@+id/promo_image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:scaleType="centerCrop"
+            android:foreground="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:contentDescription="Promotion" />
+
+        <!-- Bottom Section (30%) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_16sdp"
+            android:paddingVertical="@dimen/_12sdp">
+
+            <!-- Promo Title -->
+            <TextView
+                android:id="@+id/promo_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_16ssp"
+                android:textStyle="bold"
+                android:letterSpacing="0.02"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#3324B538"
+                android:layout_marginBottom="@dimen/_8sdp" />
+
+            <!-- Do Not Show Again Checkbox -->
+            <CheckBox
+                android:id="@+id/checkbox_dont_show"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/bg_event_popup_checkbox"
+                android:text="Do not show again"
+                android:textColor="#808080"
+                android:textSize="@dimen/_11ssp"
+                android:paddingStart="@dimen/_4sdp"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:buttonTint="@null" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

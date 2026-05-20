@@ -89,9 +89,10 @@ class DrawingCanvasView @JvmOverloads constructor(
         canvas.drawColor(Color.parseColor("#1A1A1A"))
 
         bitmap?.let { bmp ->
+            if (bmp.isRecycled) return@let
             val scaledBitmap = Bitmap.createScaledBitmap(bmp, (cellSize * gridSize).toInt(), (cellSize * gridSize).toInt(), false)
             canvas.drawBitmap(scaledBitmap, 0f, 0f, null)
-            scaledBitmap.recycle()
+            if (scaledBitmap !== bmp) scaledBitmap.recycle()
         }
 
         for (i in 0..gridSize) {
@@ -180,9 +181,10 @@ class DrawingCanvasView @JvmOverloads constructor(
     fun undo(): Boolean {
         if (undoStack.isEmpty()) return false
         bitmap?.let { current ->
-            redoStack.add(current.copy(current.config, true))
+            if (!current.isRecycled) redoStack.add(current.copy(current.config, true))
         }
         val previous = undoStack.removeAt(undoStack.size - 1)
+        if (previous.isRecycled) return false
         bitmap?.recycle()
         bitmap = previous
         canvas = Canvas(bitmap!!)
@@ -194,9 +196,10 @@ class DrawingCanvasView @JvmOverloads constructor(
     fun redo(): Boolean {
         if (redoStack.isEmpty()) return false
         bitmap?.let { current ->
-            undoStack.add(current.copy(current.config, true))
+            if (!current.isRecycled) undoStack.add(current.copy(current.config, true))
         }
         val next = redoStack.removeAt(redoStack.size - 1)
+        if (next.isRecycled) return false
         bitmap?.recycle()
         bitmap = next
         canvas = Canvas(bitmap!!)
