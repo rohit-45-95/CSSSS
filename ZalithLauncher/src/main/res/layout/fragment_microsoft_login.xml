@@ -29,6 +29,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header_panel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -101,47 +102,18 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <FrameLayout
+    <WebView
+        android:id="@+id/web_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="12dp"
-        android:background="@drawable/bg_web_card_shell"
-        android:padding="1dp"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/return_button">
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:cardBackgroundColor="#090909"
-            app:cardCornerRadius="26dp"
-            app:cardElevation="0dp">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_gravity="top"
-                    android:background="@drawable/bg_web_top_glow" />
-
-                <WebView
-                    android:id="@+id/web_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent" />
-
-            </FrameLayout>
-
-        </androidx.cardview.widget.CardView>
-
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/header_panel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
