@@ -1,4 +1,4 @@
-package com.movtery.zalithlauncher.ui.dialog
+package com.craftstudio.launcher.ui.dialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -48,14 +48,12 @@ class ModInfoDialog : DialogFragment() {
             modAuthor.text = modInfo.authors?.joinToString(", ") ?: "Unknown"
             modDescription.text = modInfo.description ?: "No description available"
 
-            // Format file size
             modInfo.file?.let { file ->
                 val size = java.text.DecimalFormat("#.##").format(file.length().toDouble() / (1024 * 1024))
                 modSize.text = "%.2f MB".format(size)
                 modFile.text = file.name
             }
 
-            // Set status
             val isEnabled = modInfo.file?.name?.endsWith(".jar") == true
             modStatus.text = if (isEnabled) "Enabled" else "Disabled"
             modStatus.setTextColor(

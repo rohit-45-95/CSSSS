@@ -1,11 +1,14 @@
 package com.craftstudio.launcher.feature.mod.parser;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
 import java.io.File;
 import java.util.Arrays;
 
-public class ModInfo {
+public class ModInfo implements Parcelable {
     private File file;
     private final String id;
     private final String version;
@@ -19,6 +22,15 @@ public class ModInfo {
         this.name = name;
         this.description = description;
         this.authors = authors;
+    }
+
+    protected ModInfo(Parcel in) {
+        file = (File) in.readSerializable();
+        id = in.readString();
+        version = in.readString();
+        name = in.readString();
+        description = in.readString();
+        authors = in.createStringArray();
     }
 
     public File getFile() {
@@ -60,4 +72,31 @@ public class ModInfo {
                 ", authors=" + Arrays.toString(authors) +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeSerializable(file);
+        dest.writeString(id);
+        dest.writeString(version);
+        dest.writeString(name);
+        dest.writeString(description);
+        dest.writeStringArray(authors);
+    }
+
+    public static final Creator<ModInfo> CREATOR = new Creator<ModInfo>() {
+        @Override
+        public ModInfo createFromParcel(Parcel in) {
+            return new ModInfo(in);
+        }
+
+        @Override
+        public ModInfo[] newArray(int size) {
+            return new ModInfo[size];
+        }
+    };
 }

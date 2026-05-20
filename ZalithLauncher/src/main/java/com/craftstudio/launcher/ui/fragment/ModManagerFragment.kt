@@ -1,4 +1,4 @@
-package com.movtery.zalithlauncher.ui.fragment
+package com.craftstudio.launcher.ui.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.databinding.ModManagerLayoutBinding
@@ -17,12 +16,14 @@ import com.craftstudio.launcher.feature.mod.ModUtils
 import com.craftstudio.launcher.feature.mod.parser.ModInfo
 import com.craftstudio.launcher.feature.mod.parser.ModParser
 import com.craftstudio.launcher.feature.mod.parser.ModParserListener
+import com.craftstudio.launcher.task.Task
+import com.craftstudio.launcher.task.TaskExecutors
+import com.craftstudio.launcher.Tools
 import com.craftstudio.launcher.ui.adapter.ModManagerAdapter
 import com.craftstudio.launcher.ui.dialog.FilesDialog
 import com.craftstudio.launcher.ui.dialog.FilesDialog.FilesButton
 import com.craftstudio.launcher.ui.dialog.ModInfoDialog
 import com.craftstudio.launcher.utils.ZHTools
-import com.craftstudio.launcher.utils.anim.AnimUtils.Companion.setVisibilityAnim
 import com.craftstudio.launcher.utils.file.FileTools
 import com.craftstudio.launcher.utils.file.PasteFile
 import com.craftstudio.launcher.utils.path.PathManager
@@ -54,7 +55,6 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Get version from arguments
         version = requireArguments().getParcelable(BUNDLE_VERSION) ?: return
 
         initViews()
@@ -64,7 +64,6 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
 
     private fun initViews() {
         binding.apply {
-            // Setup RecyclerView
             modAdapter = ModManagerAdapter(
                 onModSelected = { mod, _ ->
                     updateModCounts()
@@ -79,7 +78,6 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
                 adapter = modAdapter
             }
 
-            // Set initial visibility
             bottomActionBar.visibility = View.GONE
             emptyStateText.visibility = View.GONE
         }
@@ -87,7 +85,6 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
 
     private fun setupClickListeners() {
         binding.apply {
-            // FAB buttons
             addModFab.setOnClickListener {
                 openDocumentLauncher.launch(arrayOf("application/java-archive", "application/x-jar"))
             }
@@ -103,24 +100,15 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
                 )
             }
 
-            // Bottom action buttons
             selectAllButton.setOnClickListener {
                 val allSelected = modAdapter.itemCount == modAdapter.getSelectedMods().size
                 modAdapter.selectAll(!allSelected)
                 updateActionButtons()
             }
 
-            enableSelectedButton.setOnClickListener {
-                enableSelectedMods()
-            }
-
-            disableSelectedButton.setOnClickListener {
-                disableSelectedMods()
-            }
-
-            deleteSelectedButton.setOnClickListener {
-                deleteSelectedMods()
-            }
+            enableSelectedButton.setOnClickListener { enableSelectedMods() }
+            disableSelectedButton.setOnClickListener { disableSelectedMods() }
+            deleteSelectedButton.setOnClickListener { deleteSelectedMods() }
         }
     }
 
@@ -128,6 +116,9 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
         binding.emptyStateText.visibility = View.VISIBLE
 
         ModParser.checkAllMods(version, object : ModParserListener {
+            override fun onProgress(recentlyParsedModInfo: ModInfo, totalFileCount: Int) {
+            }
+
             override fun onParseEnded(mods: List<ModInfo>) {
                 currentMods = mods.toMutableList()
                 modAdapter.updateMods(mods)
@@ -142,10 +133,6 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
                     }
                     updateModCounts()
                 }
-            }
-
-            override fun onProgress(current: Int, total: Int) {
-                // Update progress if needed
             }
         })
     }
@@ -168,7 +155,6 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
         val selectedCount = modAdapter.getSelectedMods().size
         binding.apply {
             bottomActionBar.visibility = if (selectedCount > 0) View.VISIBLE else View.GONE
-
             enableSelectedButton.visibility = if (selectedCount > 0) View.VISIBLE else View.GONE
             disableSelectedButton.visibility = if (selectedCount > 0) View.VISIBLE else View.GONE
             deleteSelectedButton.visibility = if (selectedCount > 0) View.VISIBLE else View.GONE
@@ -185,7 +171,6 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
             mod.file?.parentFile ?: File(PathManager.DIR_GAME), mod.file!!
         )
 
-        // Enable/Disable button
         if (mod.file?.name?.endsWith(ModUtils.JAR_FILE_SUFFIX) == true) {
             filesButton.setMoreButtonText(getString(R.string.mods_disable))
             dialog.setMoreButtonClick {
@@ -202,13 +187,9 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
             }
         }
 
-        // Info button
         filesButton.setCopyButtonText(getString(R.string.mods_info_title))
-        dialog.setCopyButtonClick {
-            showModInfoDialog(mod)
-        }
+        dialog.setCopyButtonClick { showModInfoDialog(mod) }
 
-        // Delete button
         filesButton.setDeleteButtonText(getString(R.string.mods_delete))
         dialog.setDeleteButtonClick {
             MaterialAlertDialogBuilder(requireContext())
@@ -237,9 +218,7 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
         ModToggleHandler(
             requireContext(),
             selectedMods.map { it.file!! },
-            Task.runTask(TaskExecutors.getAndroidUI()) {
-                loadMods()
-            }
+            Task.runTask(TaskExecutors.getAndroidUI()) { loadMods() }
         ).start()
     }
 
@@ -250,9 +229,7 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
         ModToggleHandler(
             requireContext(),
             selectedMods.map { it.file!! },
-            Task.runTask(TaskExecutors.getAndroidUI()) {
-                loadMods()
-            }
+            Task.runTask(TaskExecutors.getAndroidUI()) { loadMods() }
         ).start()
     }
 
@@ -264,9 +241,7 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
             .setTitle(R.string.generic_warning)
             .setMessage(getString(R.string.generic_confirm_delete_multiple, selectedMods.size))
             .setPositiveButton(R.string.generic_yes) { _, _ ->
-                selectedMods.forEach { mod ->
-                    mod.file?.delete()
-                }
+                selectedMods.forEach { mod -> mod.file?.delete() }
                 loadMods()
             }
             .setNegativeButton(R.string.generic_no, null)
@@ -289,19 +264,19 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
         }.execute()
     }
 
-    override fun slideIn(animPlayer: AnimPlayer) {
+    override fun slideIn(animPlayer: com.movtery.anim.AnimPlayer) {
         binding.apply {
-            animPlayer.apply(AnimPlayer.Entry(appBarLayout, Animations.SlideInDown))
-                .apply(AnimPlayer.Entry(modsRecyclerView, Animations.FadeInUp))
-                .apply(AnimPlayer.Entry(bottomActionBar, Animations.SlideInUp))
+            animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(appBarLayout, com.movtery.anim.animations.Animations.SlideInDown))
+                .apply(com.movtery.anim.AnimPlayer.Entry(modsRecyclerView, com.movtery.anim.animations.Animations.FadeInUp))
+                .apply(com.movtery.anim.AnimPlayer.Entry(bottomActionBar, com.movtery.anim.animations.Animations.SlideInUp))
         }
     }
 
-    override fun slideOut(animPlayer: AnimPlayer) {
+    override fun slideOut(animPlayer: com.movtery.anim.AnimPlayer) {
         binding.apply {
-            animPlayer.apply(AnimPlayer.Entry(appBarLayout, Animations.SlideOutUp))
-                .apply(AnimPlayer.Entry(modsRecyclerView, Animations.FadeOutDown))
-                .apply(AnimPlayer.Entry(bottomActionBar, Animations.SlideOutDown))
+            animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(appBarLayout, com.movtery.anim.animations.Animations.SlideOutUp))
+                .apply(com.movtery.anim.AnimPlayer.Entry(modsRecyclerView, com.movtery.anim.animations.Animations.FadeOutDown))
+                .apply(com.movtery.anim.AnimPlayer.Entry(bottomActionBar, com.movtery.anim.animations.Animations.SlideOutDown))
         }
     }
 }
