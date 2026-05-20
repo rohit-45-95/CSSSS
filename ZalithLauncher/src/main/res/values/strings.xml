@@ -49,6 +49,7 @@
     <string name="generic_optional">Optional</string>
     <string name="generic_required">Required</string>
     <string name="generic_all">All</string>
+    <string name="generic_select_all">Select All</string>
     <string name="generic_wan">Ten Thousand</string>
     <string name="generic_yi">Billion</string>
     <string name="generic_login">Login</string>

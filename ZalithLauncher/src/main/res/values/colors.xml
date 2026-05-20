@@ -106,4 +106,9 @@
     <color name="quick_settings_track">#333333</color>
     <color name="quick_settings_border">#333333</color>
 
+    <!-- Mod Manager -->
+    <color name="red">#F44336</color>
+    <color name="green">#4CAF50</color>
+    <color name="gray">#9E9E9E</color>
+
 </resources>
