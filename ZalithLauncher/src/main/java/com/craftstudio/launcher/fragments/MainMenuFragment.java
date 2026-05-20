@@ -136,13 +136,8 @@ public class MainMenuFragment extends FragmentWithAnim {
             }
         });
         binding.managerProfileButton.setOnClickListener(v -> {
-            if (!isTaskRunning()) {
-                ViewAnimUtils.setViewAnim(binding.managerProfileButton, Animations.Pulse);
-                ZHTools.swapFragmentWithAnim(this, VersionManagerFragment.class, VersionManagerFragment.TAG, null);
-            } else {
-                ViewAnimUtils.setViewAnim(binding.managerProfileButton, Animations.Shake);
-                TaskExecutors.runInUIThread(() -> Toast.makeText(requireContext(), R.string.version_manager_task_in_progress, Toast.LENGTH_SHORT).show());
-            }
+            ViewAnimUtils.setViewAnim(binding.managerProfileButton, Animations.Pulse);
+            new com.movtery.zalithlauncher.ui.dialog.QuickSettingsDialog(requireContext()).show();
         });
 
         binding.playButton.setOnClickListener(v -> EventBus.getDefault().post(new LaunchGameEvent()));

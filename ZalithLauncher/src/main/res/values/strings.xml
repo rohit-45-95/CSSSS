@@ -433,6 +433,29 @@
     <string name="custom_mouse_save_failed">Failed to save cursor</string>
 
     <!-- ══════════════════════════════════════════ -->
+    <!--        🎨 CURSOR STUDIO                    -->
+    <!-- ══════════════════════════════════════════ -->
+    <string name="cursor_studio_brand">CS Launcher V2</string>
+    <string name="cursor_studio_title">CURSOR CUSTOMIZATION STUDIO</string>
+    <string name="cursor_studio_subtitle">PIXEL ART EDITION</string>
+    <string name="cursor_studio_watermark">CS Launcher V2 Cursor Studio</string>
+    <string name="cursor_studio_pencil">Pixel Pencil</string>
+    <string name="cursor_studio_eraser">Eraser</string>
+    <string name="cursor_studio_eyedropper">Color Picker</string>
+    <string name="cursor_studio_undo">Undo</string>
+    <string name="cursor_studio_redo">Redo</string>
+    <string name="cursor_studio_clear">Clear Canvas</string>
+    <string name="cursor_studio_preview">CURSOR PREVIEW</string>
+    <string name="cursor_studio_preview_light">On Light</string>
+    <string name="cursor_studio_preview_dark">On Dark</string>
+    <string name="cursor_studio_grid_size">Grid Size</string>
+    <string name="cursor_studio_colors">COLORS</string>
+    <string name="cursor_studio_custom_color">Custom Color</string>
+    <string name="cursor_studio_save">SAVE &amp; APPLY CUSTOM CURSOR</string>
+    <string name="cursor_studio_clear_confirm">Clear the entire canvas?</string>
+    <string name="cursor_studio_grid_change_confirm">Changing grid size will clear the canvas. Continue?</string>
+
+    <!-- ══════════════════════════════════════════ -->
     <!--          🖼️ CUSTOM BACKGROUND              -->
     <!-- ══════════════════════════════════════════ -->
     <string name="custom_background_add">Add Background Image</string>

@@ -132,6 +132,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/mouse_preview_card" />
 
+            <TextView
+                android:id="@+id/btn_open_studio"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_marginHorizontal="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/bg_cursor_studio_button"
+                android:gravity="center"
+                android:text="@string/cursor_studio_title"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_8ssp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mouse_label" />
+
             <include
                 android:id="@+id/action_bar"
                 layout="@layout/view_file_action_bar"

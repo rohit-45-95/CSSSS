@@ -79,4 +79,31 @@
     <!-- Text -->
     <color name="primary_text">#E8EAF6</color>
 
+    <!-- Cursor Studio -->
+    <color name="cursor_studio_bg">#1A1A1A</color>
+    <color name="cursor_studio_panel">#252525</color>
+    <color name="cursor_studio_panel_border">#333333</color>
+    <color name="cursor_studio_accent">#FF6B00</color>
+    <color name="cursor_studio_accent_dim">#80FF6B00</color>
+    <color name="cursor_studio_accent_light">#FFAA00</color>
+    <color name="cursor_studio_grid_line">#33FFFFFF</color>
+    <color name="cursor_studio_watermark">#15FFFFFF</color>
+    <color name="cursor_studio_text">#E0E0E0</color>
+    <color name="cursor_studio_text_dim">#808080</color>
+    <color name="cursor_studio_tool_active">#FF6B00</color>
+    <color name="cursor_studio_tool_inactive">#666666</color>
+    <color name="cursor_studio_preview_light">#F5F5F5</color>
+    <color name="cursor_studio_preview_dark">#2A2A2A</color>
+
+    <!-- Quick Settings Dialog -->
+    <color name="quick_settings_bg">#000000</color>
+    <color name="quick_settings_card">#0A0A0A</color>
+    <color name="quick_settings_green">#24B538</color>
+    <color name="quick_settings_green_dim">#8024B538</color>
+    <color name="quick_settings_green_ripple">#3324B538</color>
+    <color name="quick_settings_text">#FFFFFF</color>
+    <color name="quick_settings_text_dim">#808080</color>
+    <color name="quick_settings_track">#333333</color>
+    <color name="quick_settings_border">#333333</color>
+
 </resources>

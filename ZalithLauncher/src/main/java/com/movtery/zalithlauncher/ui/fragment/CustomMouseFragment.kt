@@ -56,6 +56,12 @@ class CustomMouseFragment : FragmentWithAnim(R.layout.fragment_custom_mouse) {
 
             ZHTools.setTooltipText(returnButton)
         }
+
+        binding.btnOpenStudio.setOnClickListener {
+            val studioFragment = CursorStudioFragment()
+            studioFragment.setOnCursorSavedListener { refreshIcon() }
+            ZHTools.swapFragmentWithAnim(this, CursorStudioFragment::class.java, CursorStudioFragment.TAG, null)
+        }
     }
 
     private fun setupViewPager() {

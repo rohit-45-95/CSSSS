@@ -38,6 +38,11 @@
         <item name="cornerSize">4%</item>
     </style>
 
+    <style name="QuickSettingsAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/quick_settings_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/quick_settings_slide_out</item>
+    </style>
+
     <style name="RoundImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
