@@ -2,6 +2,9 @@ package com.craftstudio.launcher;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 
 import androidx.activity.OnBackPressedCallback;
@@ -61,6 +64,9 @@ public class CustomControlsActivity extends BaseActivity implements EditorExitab
 			Tools.showError(this, e);
 		}
 
+		setupDrawerAnimation(drawerLayout, drawerNavigationView);
+		setupEntryAnimations();
+
 		getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
 			@Override
 			public void handleOnBackPressed() {
@@ -74,6 +80,60 @@ public class CustomControlsActivity extends BaseActivity implements EditorExitab
 		if (bundle != null) {
 			mControlPath = bundle.getString(BUNDLE_CONTROL_PATH);
 		}
+	}
+
+	private void setupDrawerAnimation(DrawerLayout drawerLayout, FrameLayout navPanel) {
+		drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
+			@Override
+			public void onDrawerOpened(View drawerView) {
+				drawerView.setAlpha(0f);
+				drawerView.setTranslationX(80f);
+				drawerView.setScaleX(0.94f);
+				drawerView.setScaleY(0.94f);
+				drawerView.animate()
+					.alpha(1f)
+					.translationX(0f)
+					.scaleX(1f)
+					.scaleY(1f)
+					.setDuration(300)
+					.setInterpolator(new OvershootInterpolator(1.2f))
+					.start();
+			}
+
+			@Override
+			public void onDrawerClosed(View drawerView) {
+				drawerView.animate()
+					.alpha(0f)
+					.translationX(40f)
+					.scaleX(0.96f)
+					.scaleY(0.96f)
+					.setDuration(180)
+					.setInterpolator(new AccelerateInterpolator())
+					.start();
+			}
+		});
+	}
+
+	private void setupEntryAnimations() {
+		binding.editorBadge.setAlpha(0f);
+		binding.editorBadge.setTranslationY(-20f);
+		binding.editorBadge.animate()
+			.alpha(1f)
+			.translationY(0f)
+			.setDuration(400)
+			.setStartDelay(100)
+			.setInterpolator(new OvershootInterpolator(1.5f))
+			.start();
+
+		binding.hintContainer.setAlpha(0f);
+		binding.hintContainer.setTranslationX(30f);
+		binding.hintContainer.animate()
+			.alpha(1f)
+			.translationX(0f)
+			.setDuration(400)
+			.setStartDelay(180)
+			.setInterpolator(new OvershootInterpolator(1.5f))
+			.start();
 	}
 
 	@Override
