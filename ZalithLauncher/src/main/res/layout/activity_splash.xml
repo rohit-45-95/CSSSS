@@ -47,23 +47,38 @@
         android:text="Preparing..."
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@id/progress_bar"
+        app:layout_constraintBottom_toTopOf="@id/tv_filename"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_logo" />
+
+    <TextView
+        android:id="@+id/tv_filename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:alpha="0"
+        android:fontFamily="sans-serif"
+        android:text=""
+        android:textColor="#8024B538"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_status" />
 
     <FrameLayout
         android:id="@+id/progress_bar"
         android:layout_width="0dp"
         android:layout_height="4dp"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="48dp"
         android:background="@drawable/bg_splash_progress_bg"
         app:layout_constraintBottom_toTopOf="@id/tv_percent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_status">
+        app:layout_constraintTop_toBottomOf="@id/tv_filename">
 
         <View
             android:id="@+id/progress_fill"

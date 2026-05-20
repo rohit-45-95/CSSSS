@@ -5,14 +5,12 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.OvershootInterpolator
+import android.animation.ValueAnimator
 import androidx.core.app.ActivityCompat
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.craftstudio.launcher.InfoCenter
-import com.craftstudio.launcher.InfoDistributor
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.databinding.ActivitySplashBinding
 import com.craftstudio.launcher.feature.unpack.Components
@@ -33,8 +31,9 @@ class SplashActivity : BaseActivity() {
     private lateinit var binding: ActivitySplashBinding
     private lateinit var installableAdapter: InstallableAdapter
     private val items: MutableList<InstallableItem> = ArrayList()
-    private val handler = Handler(Looper.getMainLooper())
-    private var shimmerRunnable: Runnable? = null
+
+    private var currentFileName: String = ""
+    private var progressAnimator: ValueAnimator? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,21 +67,18 @@ class SplashActivity : BaseActivity() {
 
     private fun startLogoAnimation() {
         binding.ivLogo.apply {
-            scaleX = 0.9f
-            scaleY = 0.9f
-            alpha = 0.8f
+            scaleX = 0.85f
+            scaleY = 0.85f
             animate()
-                .scaleX(1.1f)
-                .scaleY(1.1f)
-                .alpha(1f)
-                .setDuration(1200)
+                .scaleX(1.08f)
+                .scaleY(1.08f)
+                .setDuration(1400)
                 .setInterpolator(AccelerateDecelerateInterpolator())
                 .withEndAction {
                     animate()
-                        .scaleX(0.95f)
-                        .scaleY(0.95f)
-                        .alpha(0.9f)
-                        .setDuration(1200)
+                        .scaleX(0.92f)
+                        .scaleY(0.92f)
+                        .setDuration(1400)
                         .setInterpolator(AccelerateDecelerateInterpolator())
                         .withEndAction { startLogoAnimation() }
                         .start()
@@ -92,39 +88,87 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun startShimmerAnimation() {
-        val shimmerView = binding.progressBar.findViewById<View>(R.id.progress_shimmer) ?: return
-        shimmerRunnable = object : Runnable {
-            override fun run() {
-                val parentWidth = (shimmerView.parent as? View)?.width ?: shimmerView.width
-                shimmerView.translationX = -shimmerView.width.toFloat()
-                shimmerView.animate()
-                    .translationX(parentWidth.toFloat())
-                    .setDuration(1500)
-                    .setInterpolator(AccelerateDecelerateInterpolator())
-                    .withEndAction { this.run() }
-                    .start()
-            }
+        binding.root.post {
+            val shimmer = binding.progressShimmer
+            val parent = shimmer.parent as? View ?: return@post
+            val parentWidth = parent.width
+            shimmer.translationX = -shimmer.width.toFloat()
+            shimmer.animate()
+                .translationX(parentWidth.toFloat())
+                .setDuration(1800)
+                .setInterpolator(AccelerateDecelerateInterpolator())
+                .withEndAction {
+                    shimmer.animate()
+                        .translationX(-shimmer.width.toFloat())
+                        .setDuration(1800)
+                        .setInterpolator(AccelerateDecelerateInterpolator())
+                        .withEndAction { startShimmerAnimation() }
+                        .start()
+                }
+                .start()
         }
-        handler.post(shimmerRunnable!!)
     }
 
-    private fun updateProgress(progress: Int, status: String) {
-        handler.post {
-            binding.tvStatus.text = status
-            binding.tvPercent.text = "$progress%"
+    private fun updateProgress(progress: Int, status: String, fileName: String) {
+        animateProgressFill(progress.coerceIn(0, 100))
+        binding.tvPercent.text = "${progress.coerceIn(0, 100)}%"
+        binding.tvStatus.text = status
+        setFileName(fileName)
+    }
 
-            binding.progressBar.findViewById<View>(R.id.progress_fill)?.let { fill ->
-                fill.layoutParams = fill.layoutParams.apply {
-                    width = (binding.progressBar.width * progress / 100)
-                }
+    private fun animateProgressFill(targetPercent: Int) {
+        progressAnimator?.cancel()
+        val fill = binding.progressFill
+        val parent = fill.parent as? View ?: return
+        if (parent.width <= 0) return
+        val targetWidth = (parent.width * targetPercent / 100).coerceAtLeast(0)
+
+        val anim = ValueAnimator.ofInt(fill.layoutParams.width, targetWidth)
+        anim.duration = 400
+        anim.interpolator = OvershootInterpolator(0.6f)
+        anim.addUpdateListener { a ->
+            fill.layoutParams = fill.layoutParams.apply {
+                width = a.animatedValue as Int
             }
+        }
+        progressAnimator = anim
+        anim.start()
+    }
+
+    private fun setFileName(fileName: String) {
+        val tv = binding.tvFilename
+        if (fileName.isBlank()) {
+            tv.animate().cancel()
+            tv.animate().alpha(0f).setDuration(150).start()
+            currentFileName = ""
+            return
+        }
+        if (fileName == currentFileName) return
+        currentFileName = fileName
+
+        tv.animate().cancel()
+        if (tv.alpha < 0.1f) {
+            tv.text = fileName
+            tv.animate().alpha(0.8f).setDuration(200).start()
+        } else {
+            tv.animate().alpha(0f).setDuration(150).withEndAction {
+                tv.text = fileName
+                tv.animate().alpha(0.8f).setDuration(200).start()
+            }.start()
         }
     }
 
     private fun startInstallIfNeeded() {
         if (isStarted) return
         isStarted = true
-        updateProgress(0, getString(R.string.splash_screen_installing))
+        updateProgress(0, getString(R.string.splash_screen_installing), "")
+
+        installableAdapter.setOverallProgressListener(object : InstallableAdapter.OverallProgressListener {
+            override fun onOverallProgress(percent: Int, fileName: String) {
+                updateProgress(percent, getString(R.string.splash_screen_installing), fileName)
+            }
+        })
+
         installableAdapter.startAllTasks()
     }
 
@@ -177,7 +221,7 @@ class SplashActivity : BaseActivity() {
             toMain()
         }
     }
-    
+
     private fun checkEnd() {
         installableAdapter.checkAllTask()
         Task.runTask {
@@ -188,16 +232,14 @@ class SplashActivity : BaseActivity() {
     }
 
     private fun toMain() {
-        startActivity(Intent(this, LauncherActivity::class.java))
-        finish()
+        animateProgressFill(100)
+        binding.root.postDelayed({
+            startActivity(Intent(this, LauncherActivity::class.java))
+            finish()
+        }, 600)
     }
 
     companion object {
         private const val STORAGE_PERMISSION_REQUEST_CODE = 1
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        shimmerRunnable?.let { handler.removeCallbacks(it) }
     }
 }

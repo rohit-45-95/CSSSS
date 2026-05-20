@@ -17,6 +17,13 @@ class InstallableAdapter(
     private var completedTasksCount = 0
 
     private val mainHandler = Handler(Looper.getMainLooper())
+    private val taskProgress = IntArray(items.size) { 0 }
+
+    private var overallProgressListener: OverallProgressListener? = null
+
+    fun setOverallProgressListener(listener: OverallProgressListener) {
+        this.overallProgressListener = listener
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemInstallableBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -35,6 +42,7 @@ class InstallableAdapter(
         items.forEachIndexed { index, item ->
             if (!item.task.isNeedUnpack()) {
                 item.isFinished = true
+                taskProgress[index] = 100
                 updateTaskCount(index)
             }
         }
@@ -51,15 +59,31 @@ class InstallableAdapter(
                                 updateUI { notifyItemChanged(index) }
                             }
 
+                            override fun onTaskProgress(progress: Int, fileName: String) {
+                                taskProgress[index] = progress
+                                val overall = taskProgress.sum() / items.size
+                                updateUI {
+                                    overallProgressListener?.onOverallProgress(overall, fileName)
+                                }
+                            }
+
                             override fun onTaskEnd() {
+                                taskProgress[index] = 100
                                 item.isRunning = false
                                 item.isFinished = true
                                 updateTaskCount(index)
+
+                                val overall = taskProgress.sum() / items.size
+                                updateUI {
+                                    overallProgressListener?.onOverallProgress(overall, "")
+                                }
                             }
                         })
                     }
                     item.task.run()
                 }.start()
+            } else {
+                taskProgress[index] = 100
             }
         }
     }
@@ -102,5 +126,9 @@ class InstallableAdapter(
 
     fun interface TaskCompletionListener {
         fun onAllTasksCompleted()
+    }
+
+    fun interface OverallProgressListener {
+        fun onOverallProgress(percent: Int, fileName: String)
     }
 }
