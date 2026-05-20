@@ -117,14 +117,12 @@ class ControlSettingsFragment() : AbstractSettingsFragment(R.layout.settings_fra
             context,
             binding.customMouseLayout
         ) {
-            parentFragment?.apply {
-                ZHTools.swapFragmentWithAnim(
-                    this,
-                    CustomMouseFragment::class.java,
-                    CustomMouseFragment.TAG,
-                    null
-                )
-            }
+            ZHTools.swapFragmentWithAnim(
+                this@ControlSettingsFragment,
+                CustomMouseFragment::class.java,
+                CustomMouseFragment.TAG,
+                null
+            )
         }
 
         SwitchSettingsWrapper(
