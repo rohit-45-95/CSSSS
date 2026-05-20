@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Gravity
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
@@ -24,7 +25,7 @@ class QuickSettingsDialog(context: Context) : Dialog(context, R.style.CustomDial
     private lateinit var ramMaxText: TextView
     private lateinit var javaChipGroup: ChipGroup
     private lateinit var btnApply: TextView
-    private lateinit var btnClose: TextView
+    private lateinit var btnClose: ImageView
 
     private var currentRamValue: Int = 0
     private var maxRam: Int = 0
