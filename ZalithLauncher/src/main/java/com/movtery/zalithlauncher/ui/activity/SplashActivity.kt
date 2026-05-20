@@ -95,15 +95,14 @@ class SplashActivity : BaseActivity() {
         val shimmerView = binding.progressBar.findViewById<View>(R.id.progress_shimmer) ?: return
         shimmerRunnable = object : Runnable {
             override fun run() {
-                shimmerView.apply {
-                    translationX = -width.toFloat()
-                    animate()
-                        .translationX(parent<View>().width.toFloat())
-                        .setDuration(1500)
-                        .setInterpolator(AccelerateDecelerateInterpolator())
-                        .withEndAction { this@Runnable.run() }
-                        .start()
-                }
+                val parentWidth = (shimmerView.parent as? View)?.width ?: shimmerView.width
+                shimmerView.translationX = -shimmerView.width.toFloat()
+                shimmerView.animate()
+                    .translationX(parentWidth.toFloat())
+                    .setDuration(1500)
+                    .setInterpolator(AccelerateDecelerateInterpolator())
+                    .withEndAction { this.run() }
+                    .start()
             }
         }
         handler.post(shimmerRunnable!!)
