@@ -2,6 +2,7 @@ package com.craftstudio.launcher.ui.adapter
 
 import android.app.AlertDialog
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

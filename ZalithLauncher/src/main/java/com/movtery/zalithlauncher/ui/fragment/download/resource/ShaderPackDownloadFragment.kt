@@ -8,7 +8,6 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.feature.download.enums.Classify
-import com.craftstudio.launcher.feature.download.enums.Platform
 import com.craftstudio.launcher.feature.download.platform.AbstractPlatformHelper.Companion.getShaderPackPath
 import com.craftstudio.launcher.feature.download.utils.CategoryUtils
 import com.craftstudio.launcher.task.Task
@@ -22,8 +21,7 @@ class ShaderPackDownloadFragment(parentFragment: Fragment? = null) : AbstractRes
     parentFragment,
     Classify.SHADER_PACK,
     CategoryUtils.getShaderPackCategory(),
-    false,
-    Platform.MODRINTH
+    false
 ) {
     private var openDocumentLauncher: ActivityResultLauncher<Any>? = null
 

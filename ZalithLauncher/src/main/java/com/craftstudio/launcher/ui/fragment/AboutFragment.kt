@@ -1,4 +1,4 @@
-package com.movtery.zalithlauncher.ui.fragment
+package com.craftstudio.launcher.ui.fragment
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
