@@ -28,7 +28,6 @@ import com.craftstudio.launcher.JMinecraftVersionList
 import com.craftstudio.launcher.Logger
 import com.craftstudio.launcher.Tools
 import com.craftstudio.launcher.utils.OfflineUuidUtils
-import com.craftstudio.launcher.auth.offline.OfflineAccount
 import com.craftstudio.launcher.authenticator.microsoft.PresentedException
 import com.craftstudio.launcher.lifecycle.ContextAwareDoneListener
 import com.craftstudio.launcher.multirt.MultiRTUtils
@@ -166,35 +165,11 @@ class LaunchGame {
 
             JREUtils.redirectAndPrintJRELog()
 
-            // Initialize Yggdrasil server for offline accounts with custom skins
-            val authlibArgs = if (AccountUtils.isNoLoginRequired(account)) {
-                OfflineAccount.initialize(
-                    activity,
-                    account.username,
-                    account.profileId
-                )
-                OfflineAccount.getAuthlibArgs()
-            } else {
-                emptyList()
-            }
-
-            // Inject CustomSkinLoader mod for offline accounts
-            if (AccountUtils.isNoLoginRequired(account)) {
-                val skinPath = com.craftstudio.launcher.utils.skin.SkinPreferenceStore.getSkinPath(activity, account.username)
-                com.craftstudio.launcher.feature.skin.CSLManager.injectCSL(
-                    activity,
-                    minecraftVersion.getGameDir(),
-                    account.username,
-                    skinPath
-                )
-            }
+            // Localhost skin rendering removed — no authlib args, no CSL injection
+            val authlibArgs = emptyList<String>()
 
             launch(activity, account, minecraftVersion, javaRuntime, customArgs, authlibArgs)
 
-            // Close Yggdrasil server after game ends
-            OfflineAccount.close()
-            
-            //Note that we actually stall in the above function, even if the game crashes. But let's be safe.
             GameService.setActive(false)
         }
 

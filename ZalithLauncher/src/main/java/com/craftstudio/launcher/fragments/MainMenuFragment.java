@@ -122,12 +122,9 @@ public class MainMenuFragment extends FragmentWithAnim {
         binding.newModsCard.setOnClickListener(v -> openDownloadCenter());
         binding.exploreModsButton.setOnClickListener(v -> openDownloadCenter());
         binding.manageFeaturesButton.setOnClickListener(v -> showClientFeaturesDialog());
-        binding.profileSettingsButton.setOnClickListener(v -> ZHTools.swapFragmentWithAnim(
-                this,
-                OfflineAccountSettingsFragment.class,
-                OfflineAccountSettingsFragment.TAG,
-                null
-        ));
+        binding.profileSettingsButton.setOnClickListener(v -> 
+            Toast.makeText(requireContext(), "Skin and Cape management coming soon", Toast.LENGTH_SHORT).show()
+        );
         binding.logoutButton.setOnClickListener(v -> onProfileAuthButtonClick());
 
         binding.version.setOnClickListener(v -> {
@@ -143,10 +140,8 @@ public class MainMenuFragment extends FragmentWithAnim {
             ZHTools.swapFragmentWithAnim(this, QuickSettingsFragment.class, QuickSettingsFragment.TAG, null);
         });
 
-        // Bell notification click listener
-        binding.bellNotificationFrame.setOnClickListener(v -> {
-            new com.craftstudio.launcher.ui.dialog.NotificationPanelDialog(requireContext()).show();
-        });
+        // Bell notification click listener (disabled — panel hidden)
+        binding.bellNotificationFrame.setOnClickListener(v -> {});
 
         binding.playButton.setOnClickListener(v -> EventBus.getDefault().post(new LaunchGameEvent()));
 
