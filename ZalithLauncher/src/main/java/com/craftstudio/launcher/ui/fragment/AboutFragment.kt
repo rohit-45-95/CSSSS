@@ -4,16 +4,12 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.view.animation.OvershootInterpolator
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -82,80 +78,32 @@ class AboutFragment : FragmentWithAnim(R.layout.fragment_about) {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun populateTeamCards() {
-        val devIcon = resources.getDrawable(R.drawable.ic_role_dev, requireContext().theme)
-        val founderIcon = resources.getDrawable(R.drawable.ic_role_founder, requireContext().theme)
-        val staffIcon = resources.getDrawable(R.drawable.ic_role_staff, requireContext().theme)
+        val defaultAvatar = resources.getDrawable(R.drawable.ic_profile_default, requireContext().theme)
 
         // Developers
-        addTeamCard(binding.devCardsContainer, devIcon, "ROHIT", "Lead Developer")
-        addTeamCard(binding.devCardsContainer, devIcon, "ENDER WARRIOR", "Developer")
-        addTeamCard(binding.devCardsContainer, devIcon, "MINER ADI", "Developer")
-        addTeamCard(binding.devCardsContainer, devIcon, "ONIZ.EXE", "Developer")
+        addTeamCard(binding.devCardsContainer, defaultAvatar, "ROHIT", "Lead Developer")
+        addTeamCard(binding.devCardsContainer, defaultAvatar, "ENDER WARRIOR", "Developer")
+        addTeamCard(binding.devCardsContainer, defaultAvatar, "MINER ADI", "Developer")
+        addTeamCard(binding.devCardsContainer, defaultAvatar, "ONIZ.EXE", "Developer")
 
         // Founders
-        addTeamCard(binding.founderCardsContainer, founderIcon, "NOT DANGER", "Founder & Owner")
+        addTeamCard(binding.founderCardsContainer, defaultAvatar, "NOT DANGER", "Founder & Owner")
 
         // Providers & Staff
-        addTeamCard(binding.staffCardsContainer, staffIcon, "RKMC", "Main Provider")
-        addTeamCard(binding.staffCardsContainer, staffIcon, "REALONESKY", "Second Provider")
-        addTeamCard(binding.staffCardsContainer, staffIcon, "BLIND GAMERRZ", "Head Moderator")
-        addTeamCard(binding.staffCardsContainer, staffIcon, "NOTERRORX", "Head Administrator")
+        addTeamCard(binding.staffCardsContainer, defaultAvatar, "RKMC", "Main Provider")
+        addTeamCard(binding.staffCardsContainer, defaultAvatar, "REALONESKY", "Second Provider")
+        addTeamCard(binding.staffCardsContainer, defaultAvatar, "BLIND GAMERRZ", "Head Moderator")
+        addTeamCard(binding.staffCardsContainer, defaultAvatar, "NOTERRORX", "Head Administrator")
     }
 
-    private fun addTeamCard(container: LinearLayout, icon: android.graphics.drawable.Drawable, name: String, role: String) {
-        val card = LinearLayout(requireContext()).apply {
-            orientation = LinearLayout.HORIZONTAL
-            gravity = Gravity.CENTER_VERTICAL
-            background = resources.getDrawable(R.drawable.bg_about_card_green, requireContext().theme)
-            setPadding(dp(14), dp(12), dp(14), dp(12))
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { bottomMargin = dp(6) }
-        }
+    private fun addTeamCard(container: LinearLayout, avatar: android.graphics.drawable.Drawable, name: String, role: String) {
+        val card = LayoutInflater.from(requireContext()).inflate(R.layout.item_about_member, container, false)
 
-        val iconView = ImageView(requireContext()).apply {
-            setImageDrawable(icon)
-            layoutParams = LinearLayout.LayoutParams(dp(32), dp(32))
-        }
-
-        val textLayout = LinearLayout(requireContext()).apply {
-            orientation = LinearLayout.VERTICAL
-            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
-                marginStart = dp(12)
-            }
-        }
-
-        val nameText = TextView(requireContext()).apply {
-            text = name
-            setTextColor(Color.parseColor("#24B538"))
-            textSize = 13f
-            typeface = Typeface.DEFAULT_BOLD
-        }
-
-        val roleText = TextView(requireContext()).apply {
-            text = role
-            setTextColor(Color.parseColor("#808080"))
-            textSize = 11f
-        }
-
-        textLayout.addView(nameText)
-        textLayout.addView(roleText)
-        card.addView(iconView)
-        card.addView(textLayout)
-
-        // Glow indicator bar
-        val glowBar = View(requireContext()).apply {
-            layoutParams = LinearLayout.LayoutParams(dp(3), dp(32)).apply { marginEnd = dp(0) }
-            setBackgroundColor(Color.parseColor("#24B538"))
-        }
-        card.addView(glowBar, 0)
+        card.findViewById<ImageView>(R.id.member_avatar).setImageDrawable(avatar)
+        card.findViewById<TextView>(R.id.member_name).text = name
+        card.findViewById<TextView>(R.id.member_role).text = role
 
         container.addView(card)
-    }
-
-    private fun dp(value: Int): Int {
-        return (value * resources.displayMetrics.density).toInt()
     }
 
     // ═══════════════════════════════════════════════════
@@ -274,7 +222,7 @@ class AboutFragment : FragmentWithAnim(R.layout.fragment_about) {
             card.getLocationOnScreen(location)
             val cardTop = location[1]
 
-            if (cardTop < scrollY + screenHeight - dp(50)) {
+            if (cardTop < scrollY + screenHeight - (50 * resources.displayMetrics.density).toInt()) {
                 animatedViews.add(card)
                 card.alpha = 0f
                 card.translationY = 30f
