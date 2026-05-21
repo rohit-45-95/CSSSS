@@ -34,6 +34,7 @@ import com.craftstudio.launcher.ui.fragment.FilesFragment;
 import com.craftstudio.launcher.ui.fragment.CursorStudioFragment;
 import com.craftstudio.launcher.ui.fragment.FragmentWithAnim;
 import com.craftstudio.launcher.ui.fragment.OfflineAccountSettingsFragment;
+import com.craftstudio.launcher.ui.fragment.QuickSettingsFragment;
 import com.craftstudio.launcher.ui.fragment.SettingsFragment;
 import com.craftstudio.launcher.ui.fragment.VersionManagerFragment;
 import com.craftstudio.launcher.ui.fragment.VersionsListFragment;
@@ -139,7 +140,7 @@ public class MainMenuFragment extends FragmentWithAnim {
         });
         binding.managerProfileButton.setOnClickListener(v -> {
             ViewAnimUtils.setViewAnim(binding.managerProfileButton, Animations.Pulse);
-            new com.movtery.zalithlauncher.ui.dialog.QuickSettingsDialog(requireContext()).show();
+            ZHTools.swapFragmentWithAnim(this, QuickSettingsFragment.class, QuickSettingsFragment.TAG, null);
         });
 
         // Bell notification click listener
