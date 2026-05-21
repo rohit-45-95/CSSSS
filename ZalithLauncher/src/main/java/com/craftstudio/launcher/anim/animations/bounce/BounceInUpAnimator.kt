@@ -27,7 +27,7 @@ package com.craftstudio.launcher.anim.animations.bounce
 import android.animation.Animator
 import android.animation.ObjectAnimator
 import android.view.View
-import com.craftstudio.launcher.anim.animations.BaseAnimator
+import com.craftstudio.launcher.anim.BaseAnimator
 
 class BounceInUpAnimator: BaseAnimator() {
     override fun getAnimators(target: View): Array<Animator> {
