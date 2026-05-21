@@ -39,7 +39,7 @@ object OfflineAccount {
         // Create server on random port
         server = YggdrasilServer(0)
         
-        // Load textures
+        // Load textures (handles LOCAL_FILE and CUSTOM_SKIN_LOADER_API)
         val loadedSkin = skin.loadTextures()
         
         // Add character to server
@@ -87,13 +87,24 @@ object OfflineAccount {
      * Load skin preference from SharedPreferences.
      */
     private fun loadSkin(context: Context, username: String): Skin? {
+        val skinUrl = SkinPreferenceStore.getSkinUrl(context, username)
         val skinPath = SkinPreferenceStore.getSkinPath(context, username)
         val capePath = SkinPreferenceStore.getCapePath(context, username)
+        val textureModel = SkinPreferenceStore.getTextureModel(context, username)
         
         return when {
+            skinUrl != null -> {
+                // URL-based skin (CUSTOM_SKIN_LOADER_API)
+                Skin(
+                    type = Skin.Type.CUSTOM_SKIN_LOADER_API,
+                    textureModel = textureModel,
+                    localSkinPath = null,
+                    localCapePath = capePath,
+                    skinUrl = skinUrl
+                )
+            }
             skinPath != null && File(skinPath).exists() -> {
                 // LOCAL_FILE skin
-                val textureModel = SkinPreferenceStore.getTextureModel(context, username)
                 Skin(
                     type = Skin.Type.LOCAL_FILE,
                     textureModel = textureModel,
@@ -103,7 +114,6 @@ object OfflineAccount {
             }
             else -> {
                 // DEFAULT skin (no custom textures)
-                val textureModel = SkinPreferenceStore.getTextureModel(context, username)
                 Skin(
                     type = Skin.Type.DEFAULT,
                     textureModel = textureModel

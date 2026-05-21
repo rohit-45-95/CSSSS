@@ -11,6 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.Tools
+import com.craftstudio.launcher.auth.offline.Skin
 import com.craftstudio.launcher.auth.offline.TextureModel
 import com.craftstudio.launcher.databinding.FragmentOfflineAccountSettingsBinding
 import com.craftstudio.launcher.event.single.AccountUpdateEvent
@@ -66,7 +67,10 @@ class OfflineAccountSettingsFragment : FragmentWithAnim(R.layout.fragment_offlin
                 }
             }.ended(TaskExecutors.getAndroidUI()) {
                 when (target) {
-                    AssetTarget.SKIN -> SkinPreferenceStore.saveSkinPath(requireContext(), account.username, outputFile.absolutePath)
+                    AssetTarget.SKIN -> {
+                        SkinPreferenceStore.clearSkinUrl(requireContext(), account.username)
+                        SkinPreferenceStore.saveSkinPath(requireContext(), account.username, outputFile.absolutePath)
+                    }
                     AssetTarget.CAPE -> SkinPreferenceStore.saveCapePath(requireContext(), account.username, outputFile.absolutePath)
                 }
                 Toast.makeText(requireContext(), getString(R.string.generic_saved), Toast.LENGTH_SHORT).show()
@@ -91,6 +95,80 @@ class OfflineAccountSettingsFragment : FragmentWithAnim(R.layout.fragment_offlin
         binding.backButton.setOnClickListener { forceBack() }
         binding.uploadSkinButton.setOnClickListener { pickAsset(AssetTarget.SKIN) }
         binding.uploadCapeButton.setOnClickListener { pickAsset(AssetTarget.CAPE) }
+        
+        // URL-based skin buttons
+        binding.applyUrlButton.setOnClickListener { applySkinFromUrl() }
+        binding.copyMcSkinButton.setOnClickListener { copySkinFromMinecraft() }
+        binding.defaultSteveButton.setOnClickListener { applyDefaultSkin(Skin.Type.STEVE) }
+        binding.defaultAlexButton.setOnClickListener { applyDefaultSkin(Skin.Type.ALEX) }
+        
+        refreshAccountPreview()
+    }
+
+    private fun applySkinFromUrl() {
+        val account = getLocalAccount() ?: run {
+            Toast.makeText(requireContext(), "Select an offline account first", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        val input = binding.skinUrlInput.text.toString().trim()
+        if (input.isBlank()) {
+            Toast.makeText(requireContext(), "Enter a URL or username", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        val url = if (input.startsWith("http")) {
+            if (!input.startsWith("https://")) {
+                Toast.makeText(requireContext(), "Only HTTPS URLs allowed", Toast.LENGTH_SHORT).show()
+                return
+            }
+            input
+        } else {
+            // Treat as Minecraft username
+            "https://minotar.net/skin/$input"
+        }
+        
+        SkinPreferenceStore.saveSkinUrl(requireContext(), account.username, url)
+        SkinPreferenceStore.clearSkinPreferences(requireContext(), account.username)
+        SkinPreferenceStore.saveSkinUrl(requireContext(), account.username, url)
+        
+        Toast.makeText(requireContext(), "Skin URL applied! Rejoin game to see changes.", Toast.LENGTH_SHORT).show()
+        EventBus.getDefault().post(AccountUpdateEvent())
+        refreshAccountPreview()
+    }
+
+    private fun copySkinFromMinecraft() {
+        val account = getLocalAccount() ?: run {
+            Toast.makeText(requireContext(), "Select an offline account first", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        val mcName = binding.skinUrlInput.text.toString().trim()
+        if (mcName.isBlank()) {
+            Toast.makeText(requireContext(), "Enter Minecraft username", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        val url = "https://minotar.net/skin/$mcName"
+        SkinPreferenceStore.saveSkinUrl(requireContext(), account.username, url)
+        
+        Toast.makeText(requireContext(), "Copied skin from $mcName!", Toast.LENGTH_SHORT).show()
+        EventBus.getDefault().post(AccountUpdateEvent())
+        refreshAccountPreview()
+    }
+
+    private fun applyDefaultSkin(type: Skin.Type) {
+        val account = getLocalAccount() ?: run {
+            Toast.makeText(requireContext(), "Select an offline account first", Toast.LENGTH_SHORT).show()
+            return
+        }
+        
+        SkinPreferenceStore.clearSkinUrl(requireContext(), account.username)
+        SkinPreferenceStore.saveTextureModel(requireContext(), account.username, 
+            if (type == Skin.Type.STEVE) TextureModel.STEVE else TextureModel.ALEX)
+        
+        Toast.makeText(requireContext(), "Default ${if (type == Skin.Type.STEVE) "Steve" else "Alex"} skin applied!", Toast.LENGTH_SHORT).show()
+        EventBus.getDefault().post(AccountUpdateEvent())
         refreshAccountPreview()
     }
 
@@ -160,20 +238,27 @@ class OfflineAccountSettingsFragment : FragmentWithAnim(R.layout.fragment_offlin
         binding.uploadSkinButton.isEnabled = true
         binding.uploadCapeButton.isEnabled = true
 
+        val skinUrl = SkinPreferenceStore.getSkinUrl(requireContext(), account.username)
         val skinFile = assetFile(account, AssetTarget.SKIN)
         val capePngFile = File(PathManager.DIR_USER_CAPE, "${account.uniqueUUID}-cape.png")
         val capeGifFile = File(PathManager.DIR_USER_CAPE, "${account.uniqueUUID}-cape.gif")
-        binding.skinStatusText.text = if (skinFile.exists()) {
-            "Skin: ${skinFile.name}"
-        } else {
-            "Skin: not set"
+        
+        binding.skinStatusText.text = when {
+            skinUrl != null -> "Skin: URL (${skinUrl.take(30)}...)"
+            skinFile.exists() -> "Skin: ${skinFile.name}"
+            else -> "Skin: not set"
         }
+        
         binding.capeStatusText.text = if (capeGifFile.exists()) {
             "Cape: ${capeGifFile.name} (animated GIF)"
         } else if (capePngFile.exists()) {
             "Cape: ${capePngFile.name}"
         } else {
             "Cape: not set"
+        }
+
+        if (skinUrl != null) {
+            binding.skinUrlInput.setText(skinUrl)
         }
 
         try {
