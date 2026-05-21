@@ -1,4 +1,4 @@
-package com.movtery.zalithlauncher.ui.dialog
+package com.craftstudio.launcher.ui.dialog
 
 import android.app.Dialog
 import android.content.Context

@@ -5,7 +5,7 @@ import android.content.Context
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.animations.Animations
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.utils.anim.ViewAnimUtils.Companion.setViewAnim
 

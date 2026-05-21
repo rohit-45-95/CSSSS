@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.movtery.anim.AnimPlayer
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.AnimPlayer
+import com.craftstudio.launcher.anim.animations.Animations
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.databinding.FragmentDownloadBinding
 import com.craftstudio.launcher.event.value.DownloadPageEvent

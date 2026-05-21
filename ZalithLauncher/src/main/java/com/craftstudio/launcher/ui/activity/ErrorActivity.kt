@@ -15,7 +15,7 @@ import com.craftstudio.launcher.databinding.ActivityErrorBinding
 import com.craftstudio.launcher.InfoCenter
 import com.craftstudio.launcher.utils.ZHTools
 import com.craftstudio.launcher.Tools
-import com.movtery.zalithlauncher.ai.CrashAIAnalyzer
+import com.craftstudio.launcher.ai.CrashAIAnalyzer
 import java.io.File
 
 class ErrorActivity : BaseActivity() {

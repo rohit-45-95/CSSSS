@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.movtery.anim.AnimPlayer
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.AnimPlayer
+import com.craftstudio.launcher.anim.animations.Animations
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.event.value.DownloadPageEvent
 import com.craftstudio.launcher.feature.download.InfoViewModel

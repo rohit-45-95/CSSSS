@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.movtery.anim.AnimPlayer
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.AnimPlayer
+import com.craftstudio.launcher.anim.animations.Animations
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.databinding.SettingsFragmentControlBinding
 import com.craftstudio.launcher.setting.AllSettings

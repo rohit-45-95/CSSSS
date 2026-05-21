@@ -14,8 +14,8 @@ import com.bumptech.glide.request.target.DrawableImageViewTarget
 import com.getkeepsafe.taptargetview.TapTargetSequence
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-import com.movtery.anim.AnimPlayer
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.AnimPlayer
+import com.craftstudio.launcher.anim.animations.Animations
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.databinding.FragmentCustomBackgroundBinding
 import com.craftstudio.launcher.event.single.MainBackgroundChangeEvent

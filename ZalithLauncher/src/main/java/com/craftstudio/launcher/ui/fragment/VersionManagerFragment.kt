@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.movtery.anim.AnimPlayer
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.AnimPlayer
+import com.craftstudio.launcher.anim.animations.Animations
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.databinding.FragmentVersionManagerBinding
 import com.craftstudio.launcher.feature.version.NoVersionException

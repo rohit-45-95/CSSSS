@@ -1,6 +1,6 @@
 package com.craftstudio.launcher.ui.fragment
 
-import com.movtery.anim.AnimPlayer
+import com.craftstudio.launcher.anim.AnimPlayer
 import com.craftstudio.launcher.setting.AllSettings
 import com.craftstudio.launcher.utils.anim.SlideAnimation
 

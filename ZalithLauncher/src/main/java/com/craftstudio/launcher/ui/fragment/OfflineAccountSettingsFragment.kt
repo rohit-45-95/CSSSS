@@ -271,13 +271,13 @@ class OfflineAccountSettingsFragment : FragmentWithAnim(R.layout.fragment_offlin
         }
     }
 
-    override fun slideIn(animPlayer: com.movtery.anim.AnimPlayer) {
-        animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(binding.headerCard, com.movtery.anim.animations.Animations.BounceInDown))
-            .apply(com.movtery.anim.AnimPlayer.Entry(binding.actionCardsRow, com.movtery.anim.animations.Animations.BounceInUp))
+    override fun slideIn(animPlayer: com.craftstudio.launcher.anim.AnimPlayer) {
+        animPlayer.apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(binding.headerCard, com.craftstudio.launcher.anim.animations.Animations.BounceInDown))
+            .apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(binding.actionCardsRow, com.craftstudio.launcher.anim.animations.Animations.BounceInUp))
     }
 
-    override fun slideOut(animPlayer: com.movtery.anim.AnimPlayer) {
-        animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(binding.headerCard, com.movtery.anim.animations.Animations.FadeOutUp))
-            .apply(com.movtery.anim.AnimPlayer.Entry(binding.actionCardsRow, com.movtery.anim.animations.Animations.FadeOutDown))
+    override fun slideOut(animPlayer: com.craftstudio.launcher.anim.AnimPlayer) {
+        animPlayer.apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(binding.headerCard, com.craftstudio.launcher.anim.animations.Animations.FadeOutUp))
+            .apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(binding.actionCardsRow, com.craftstudio.launcher.anim.animations.Animations.FadeOutDown))
     }
 }

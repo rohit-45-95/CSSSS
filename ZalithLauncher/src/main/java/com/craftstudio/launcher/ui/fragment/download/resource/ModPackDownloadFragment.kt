@@ -6,7 +6,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.fragment.app.Fragment
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.animations.Animations
 import com.craftstudio.launcher.R
 import com.craftstudio.launcher.event.value.InstallLocalModpackEvent
 import com.craftstudio.launcher.feature.download.enums.Classify

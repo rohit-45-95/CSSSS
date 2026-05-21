@@ -106,17 +106,17 @@ class ManageModsFragment : FragmentWithAnim() {
         }
     }
 
-    override fun slideIn(animPlayer: com.movtery.anim.AnimPlayer) {
+    override fun slideIn(animPlayer: com.craftstudio.launcher.anim.AnimPlayer) {
         val layout = view?.findViewById<View>(R.id.header_layout)
         val list = view?.findViewById<View>(R.id.recycler_view)
-        if (layout != null) animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(layout, com.movtery.anim.animations.Animations.FadeInDown))
-        if (list != null) animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(list, com.movtery.anim.animations.Animations.FadeInUp))
+        if (layout != null) animPlayer.apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(layout, com.craftstudio.launcher.anim.animations.Animations.FadeInDown))
+        if (list != null) animPlayer.apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(list, com.craftstudio.launcher.anim.animations.Animations.FadeInUp))
     }
 
-    override fun slideOut(animPlayer: com.movtery.anim.AnimPlayer) {
+    override fun slideOut(animPlayer: com.craftstudio.launcher.anim.AnimPlayer) {
         val layout = view?.findViewById<View>(R.id.header_layout)
         val list = view?.findViewById<View>(R.id.recycler_view)
-        if (layout != null) animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(layout, com.movtery.anim.animations.Animations.FadeOutUp))
-        if (list != null) animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(list, com.movtery.anim.animations.Animations.FadeOutDown))
+        if (layout != null) animPlayer.apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(layout, com.craftstudio.launcher.anim.animations.Animations.FadeOutUp))
+        if (list != null) animPlayer.apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(list, com.craftstudio.launcher.anim.animations.Animations.FadeOutDown))
     }
 }

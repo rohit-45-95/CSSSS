@@ -1,7 +1,7 @@
 package com.craftstudio.launcher.ui.fragment.settings
 
 import androidx.annotation.CallSuper
-import com.movtery.anim.AnimPlayer
+import com.craftstudio.launcher.anim.AnimPlayer
 import com.craftstudio.launcher.event.single.SettingsChangeEvent
 import com.craftstudio.launcher.event.value.SettingsPageSwapEvent
 import com.craftstudio.launcher.ui.fragment.FragmentWithAnim

@@ -12,8 +12,8 @@ import android.view.ViewParent;
 
 import androidx.annotation.Nullable;
 
-import com.movtery.anim.AnimPlayer;
-import com.movtery.anim.animations.Animations;
+import com.craftstudio.launcher.anim.AnimPlayer;
+import com.craftstudio.launcher.anim.animations.Animations;
 import com.craftstudio.launcher.event.single.MCOptionChangeEvent;
 import com.craftstudio.launcher.event.single.RefreshHotbarEvent;
 import com.craftstudio.launcher.event.value.HotbarChangeEvent;

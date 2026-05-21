@@ -17,8 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.movtery.anim.AnimPlayer;
-import com.movtery.anim.animations.Animations;
+import com.craftstudio.launcher.anim.AnimPlayer;
+import com.craftstudio.launcher.anim.animations.Animations;
 import com.craftstudio.launcher.R;
 import com.craftstudio.launcher.databinding.FragmentControllerRemapperBinding;
 import com.craftstudio.launcher.ui.fragment.FragmentWithAnim;

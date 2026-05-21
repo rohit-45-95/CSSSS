@@ -1,9 +1,9 @@
 package com.craftstudio.launcher.utils.anim
 
 import android.view.View
-import com.movtery.anim.AnimCallback
-import com.movtery.anim.AnimPlayer
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.AnimCallback
+import com.craftstudio.launcher.anim.AnimPlayer
+import com.craftstudio.launcher.anim.animations.Animations
 
 class ViewAnimUtils {
     companion object {

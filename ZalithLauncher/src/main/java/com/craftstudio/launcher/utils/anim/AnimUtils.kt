@@ -1,7 +1,7 @@
 package com.craftstudio.launcher.utils.anim
 
 import android.view.View
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.animations.Animations
 import com.craftstudio.launcher.setting.AllSettings
 import com.craftstudio.launcher.task.Task
 import com.craftstudio.launcher.utils.anim.ViewAnimUtils.Companion.setViewAnim

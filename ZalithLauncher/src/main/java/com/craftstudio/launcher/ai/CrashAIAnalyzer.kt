@@ -1,4 +1,4 @@
-package com.movtery.zalithlauncher.ai
+package com.craftstudio.launcher.ai
 
 import com.craftstudio.launcher.feature.log.Logging
 import com.craftstudio.launcher.utils.path.UrlManager

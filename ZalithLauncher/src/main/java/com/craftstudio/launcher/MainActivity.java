@@ -36,8 +36,8 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.movtery.anim.AnimPlayer;
-import com.movtery.anim.animations.Animations;
+import com.craftstudio.launcher.anim.AnimPlayer;
+import com.craftstudio.launcher.anim.animations.Animations;
 import com.craftstudio.launcher.R;
 import com.craftstudio.launcher.context.ContextExecutor;
 import com.craftstudio.launcher.databinding.ActivityGameBinding;

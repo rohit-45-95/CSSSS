@@ -26,8 +26,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.palette.graphics.Palette;
 
 import com.kdt.mcgui.ProgressLayout;
-import com.movtery.anim.AnimPlayer;
-import com.movtery.anim.animations.Animations;
+import com.craftstudio.launcher.anim.AnimPlayer;
+import com.craftstudio.launcher.anim.animations.Animations;
 import com.craftstudio.launcher.InfoDistributor;
 import com.craftstudio.launcher.R;
 import com.craftstudio.launcher.context.ContextExecutor;

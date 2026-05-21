@@ -11,8 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.movtery.anim.AnimPlayer;
-import com.movtery.anim.animations.Animations;
+import com.craftstudio.launcher.anim.AnimPlayer;
+import com.craftstudio.launcher.anim.animations.Animations;
 import com.craftstudio.launcher.InfoCenter;
 import com.craftstudio.launcher.R;
 import com.craftstudio.launcher.databinding.FragmentLauncherBinding;

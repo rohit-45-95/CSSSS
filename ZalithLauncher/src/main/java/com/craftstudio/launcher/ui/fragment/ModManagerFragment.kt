@@ -244,19 +244,19 @@ class ModManagerFragment : FragmentWithAnim(R.layout.mod_manager_layout) {
         }.execute()
     }
 
-    override fun slideIn(animPlayer: com.movtery.anim.AnimPlayer) {
+    override fun slideIn(animPlayer: com.craftstudio.launcher.anim.AnimPlayer) {
         binding.apply {
-            animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(appBarLayout, com.movtery.anim.animations.Animations.SlideInDown))
-                .apply(com.movtery.anim.AnimPlayer.Entry(modsRecyclerView, com.movtery.anim.animations.Animations.FadeInUp))
-                .apply(com.movtery.anim.AnimPlayer.Entry(bottomActionBar, com.movtery.anim.animations.Animations.SlideInUp))
+            animPlayer.apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(appBarLayout, com.craftstudio.launcher.anim.animations.Animations.SlideInDown))
+                .apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(modsRecyclerView, com.craftstudio.launcher.anim.animations.Animations.FadeInUp))
+                .apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(bottomActionBar, com.craftstudio.launcher.anim.animations.Animations.SlideInUp))
         }
     }
 
-    override fun slideOut(animPlayer: com.movtery.anim.AnimPlayer) {
+    override fun slideOut(animPlayer: com.craftstudio.launcher.anim.AnimPlayer) {
         binding.apply {
-            animPlayer.apply(com.movtery.anim.AnimPlayer.Entry(appBarLayout, com.movtery.anim.animations.Animations.SlideOutUp))
-                .apply(com.movtery.anim.AnimPlayer.Entry(modsRecyclerView, com.movtery.anim.animations.Animations.FadeOutDown))
-                .apply(com.movtery.anim.AnimPlayer.Entry(bottomActionBar, com.movtery.anim.animations.Animations.SlideOutDown))
+            animPlayer.apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(appBarLayout, com.craftstudio.launcher.anim.animations.Animations.SlideOutUp))
+                .apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(modsRecyclerView, com.craftstudio.launcher.anim.animations.Animations.FadeOutDown))
+                .apply(com.craftstudio.launcher.anim.AnimPlayer.Entry(bottomActionBar, com.craftstudio.launcher.anim.animations.Animations.SlideOutDown))
         }
     }
 }

@@ -22,8 +22,8 @@ import com.craftstudio.launcher.task.TaskExecutors
 import com.craftstudio.launcher.ui.view.PixelCanvasView
 import com.craftstudio.launcher.utils.file.FileTools.Companion.mkdirs
 import com.craftstudio.launcher.utils.path.PathManager
-import com.movtery.anim.AnimPlayer
-import com.movtery.anim.animations.Animations
+import com.craftstudio.launcher.anim.AnimPlayer
+import com.craftstudio.launcher.anim.animations.Animations
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
