@@ -5,6 +5,5 @@ import com.craftstudio.launcher.feature.download.platform.curseforge.CurseForgeH
 import com.craftstudio.launcher.feature.download.platform.modrinth.ModrinthHelper
 
 enum class Platform(val pName: String, val helper: AbstractPlatformHelper) {
-    MODRINTH("Modrinth", ModrinthHelper()),
-    CURSEFORGE("CurseForge", CurseForgeHelper())
+    MODRINTH("Modrinth", ModrinthHelper())
 }

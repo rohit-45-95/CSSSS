@@ -1,210 +1,360 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent">
+    android:background="#000000">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.68" />
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/about_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/info_pager_shell"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_8sdp"
-        android:layout_marginBottom="@dimen/_12sdp"
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="@dimen/_18sdp"
-        app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/guideline"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_land_left_card">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_80sdp">
 
-            <View
-                android:id="@+id/info_top_accent"
+            <!-- ═══ HEADER: Logo + Branding ═══ -->
+            <FrameLayout
+                android:id="@+id/header_section"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_gravity="top"
-                android:background="#33FFB74D" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/info_view_pager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:overScrollMode="never"
-                android:padding="@dimen/_4sdp" />
-        </FrameLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/operate_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:layout_marginEnd="@dimen/_12sdp"
-        android:layout_marginBottom="@dimen/_12sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <View
-            android:id="@+id/shadowView"
-            android:layout_width="2dp"
-            android:layout_height="0dp"
-            android:background="#66FFB74D"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/operate_main_layout"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:background="@drawable/bg_land_right_panel"
-            android:padding="@dimen/_12sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/shadowView"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <LinearLayout
-                android:id="@+id/operate_header_row"
-                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <View
-                    android:id="@+id/operate_header_marker"
-                    android:layout_width="4dp"
-                    android:layout_height="30dp"
-                    android:background="#FFB74D" />
+                android:alpha="0"
+                android:paddingTop="@dimen/_32sdp"
+                android:paddingBottom="@dimen/_24sdp">
 
                 <LinearLayout
-                    android:id="@+id/operate_header_texts"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <!-- Logo Glow Background -->
+                    <FrameLayout
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_gravity="center_horizontal">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_about_logo_glow" />
+
+                        <ImageView
+                            android:id="@+id/about_logo"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_logo"
+                            android:contentDescription="CS Launcher Logo" />
+                    </FrameLayout>
+
+                    <!-- CS Launcher V2 Title -->
+                    <TextView
+                        android:id="@+id/about_brand_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:letterSpacing="0.15"
+                        android:text="CS LAUNCHER V2"
+                        android:textColor="#24B538"
+                        android:textSize="@dimen/_22ssp"
+                        android:textStyle="bold" />
+
+                    <!-- Version Info -->
+                    <TextView
+                        android:id="@+id/about_version_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:textColor="#808080"
+                        android:textSize="@dimen/_10ssp" />
+
+                    <!-- Divider -->
+                    <View
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:background="#24B538" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- ═══ CREDITS: PojavLauncher ═══ -->
+            <FrameLayout
+                android:id="@+id/credits_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingVertical="@dimen/_8sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_about_card_green"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_16sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:src="@drawable/ic_pojav_full"
+                        android:contentDescription="PojavLauncher" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="Based on PojavLauncher"
+                        android:textColor="#24B538"
+                        android:textSize="@dimen/_11ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
+                        android:gravity="center"
+                        android:text="Open source under GPL v3. Special thanks to the PojavLauncherTeam for their foundational work."
+                        android:textColor="#808080"
+                        android:textSize="@dimen/_9ssp" />
+
+                    <com.craftstudio.launcher.ui.view.AnimButton
+                        android:id="@+id/credits_github_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/bg_about_outline_button"
+                        android:paddingHorizontal="@dimen/_16sdp"
+                        android:text="View on GitHub"
+                        android:textColor="#24B538"
+                        android:textSize="@dimen/_9ssp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- ═══ TEAM: DEVELOPERS ═══ -->
+            <FrameLayout
+                android:id="@+id/team_dev_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingTop="@dimen/_16sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Category Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_about_category_header"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingVertical="@dimen/_8sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
+                            android:src="@drawable/ic_role_dev"
+                            android:contentDescription="Developer" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:letterSpacing="0.1"
+                            android:text="DEVELOPERS"
+                            android:textColor="#24B538"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Developer Cards -->
+                    <LinearLayout
+                        android:id="@+id/dev_cards_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- ═══ TEAM: FOUNDERS ═══ -->
+            <FrameLayout
+                android:id="@+id/team_founder_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingTop="@dimen/_16sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_about_category_header"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingVertical="@dimen/_8sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
+                            android:src="@drawable/ic_role_founder"
+                            android:contentDescription="Founder" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:letterSpacing="0.1"
+                            android:text="FOUNDERS"
+                            android:textColor="#24B538"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/founder_cards_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- ═══ TEAM: PROVIDERS & STAFF ═══ -->
+            <FrameLayout
+                android:id="@+id/team_staff_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingTop="@dimen/_16sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_about_category_header"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:paddingVertical="@dimen/_8sdp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
+                            android:src="@drawable/ic_role_staff"
+                            android:contentDescription="Staff" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_8sdp"
+                            android:letterSpacing="0.1"
+                            android:text="PROVIDERS &amp; STAFF"
+                            android:textColor="#24B538"
+                            android:textSize="@dimen/_12ssp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/staff_cards_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:orientation="vertical" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- ═══ FOOTER: Community Links ═══ -->
+            <FrameLayout
+                android:id="@+id/footer_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:alpha="0"
+                android:paddingHorizontal="@dimen/_20sdp"
+                android:paddingTop="@dimen/_24sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/operate_header_small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="QUICK PANEL"
-                        android:textAllCaps="true"
-                        android:textColor="#99E8EAF6"
-                        android:textSize="@dimen/_8ssp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/operate_header_big"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="1dp"
-                        android:text="About Launcher"
-                        android:textColor="#FFB74D"
+                        android:layout_gravity="center_horizontal"
+                        android:letterSpacing="0.1"
+                        android:text="JOIN THE COMMUNITY"
+                        android:textColor="#24B538"
                         android:textSize="@dimen/_12ssp"
                         android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="2dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="#3324B538" />
+
+                    <com.craftstudio.launcher.ui.view.AnimButton
+                        android:id="@+id/footer_discord_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_48sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:background="@drawable/bg_about_green_button"
+                        android:text="JOIN DISCORD"
+                        android:textColor="#000000"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold" />
+
+                    <com.craftstudio.launcher.ui.view.AnimButton
+                        android:id="@+id/footer_website_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_48sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/bg_about_outline_button"
+                        android:text="VISIT WEBSITE"
+                        android:textColor="#24B538"
+                        android:textSize="@dimen/_13ssp"
+                        android:textStyle="bold" />
+
+                    <!-- Return Button -->
+                    <com.craftstudio.launcher.ui.view.AnimButton
+                        android:id="@+id/return_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_44sdp"
+                        android:layout_marginTop="@dimen/_16sdp"
+                        android:background="@drawable/bg_about_outline_button"
+                        android:text="@string/generic_return"
+                        android:textColor="#808080"
+                        android:textSize="@dimen/_11ssp" />
                 </LinearLayout>
-            </LinearLayout>
+            </FrameLayout>
 
-            <View
-                android:id="@+id/operate_divider"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="#22FFFFFF"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/operate_header_row" />
-
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/app_info_scroll"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:fillViewport="true"
-                android:overScrollMode="never"
-                android:scrollbars="none"
-                app:layout_constraintBottom_toTopOf="@id/operate_hint"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/operate_divider">
-
-                <com.craftstudio.launcher.ui.view.AnimTextView
-                    android:id="@+id/app_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_inner_surface"
-                    android:gravity="start"
-                    android:lineSpacingExtra="@dimen/_6sdp"
-                    android:padding="@dimen/_12sdp"
-                    android:textColor="#E8EAF6"
-                    android:textSize="@dimen/_10ssp" />
-            </androidx.core.widget.NestedScrollView>
-
-            <TextView
-                android:id="@+id/operate_hint"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_8sdp"
-                android:gravity="center"
-                android:text="Left panel ko swipe karke saare info pages dekh sakte ho."
-                android:textColor="#99E8EAF6"
-                android:textSize="@dimen/_8ssp"
-                app:layout_constraintBottom_toTopOf="@id/support_development"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <com.craftstudio.launcher.ui.view.AnimButton
-                android:id="@+id/support_development"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/bg_outline_button"
-                android:text="@string/about_button_support_development"
-                android:textColor="#FFB74D"
-                android:textSize="@dimen/_10ssp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@id/return_button"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <com.craftstudio.launcher.ui.view.AnimButton
-                android:id="@+id/return_button"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_45sdp"
-                android:background="@drawable/bg_gold_button"
-                android:text="@string/generic_return"
-                android:textColor="#151520"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

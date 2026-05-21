@@ -1,7 +1,7 @@
 package com.craftstudio.launcher.ui.adapter
 
 import android.app.AlertDialog
-import android.graphics.Color
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,10 @@ import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.craftstudio.launcher.R
+import com.craftstudio.launcher.feature.log.Logging
 import com.craftstudio.launcher.feature.resource.ResourceItem
+import java.io.File
+import java.util.zip.ZipFile
 
 class ManageResourceAdapter(
     private var items: MutableList<ResourceItem>,
@@ -46,8 +49,8 @@ class ManageResourceAdapter(
         holder.tvName.text = item.displayName
         holder.tvSize.text = "${item.sizeKb} KB"
 
-        holder.ivIcon.setImageResource(R.drawable.ic_logo)
-        holder.ivIcon.setColorFilter(Color.parseColor("#24B538"))
+        // Load mod icon from JAR/ZIP metadata, fallback to default
+        loadModIcon(holder.ivIcon, item)
 
         fun updateState(enabled: Boolean, animate: Boolean = false) {
             if (enabled) {
@@ -193,6 +196,70 @@ class ManageResourceAdapter(
     }
 
     override fun getItemCount() = items.size
+
+    private fun loadModIcon(imageView: ImageView, item: ResourceItem) {
+        try {
+            val file = item.file
+            if (!file.exists() || file.length() == 0L) {
+                imageView.setImageResource(R.drawable.ic_logo)
+                imageView.clearColorFilter()
+                return
+            }
+
+            // Try to extract icon from mod JAR/ZIP metadata
+            val icon = extractModIcon(file)
+            if (icon != null) {
+                imageView.setImageBitmap(icon)
+                imageView.clearColorFilter()
+            } else {
+                // Fallback: use default puzzle icon
+                imageView.setImageResource(R.drawable.ic_puzzle)
+                imageView.clearColorFilter()
+            }
+        } catch (e: Exception) {
+            Logging.e("ManageResourceAdapter", "Failed to load mod icon for ${item.displayName}", e)
+            imageView.setImageResource(R.drawable.ic_puzzle)
+            imageView.clearColorFilter()
+        }
+    }
+
+    private fun extractModIcon(file: File): android.graphics.Bitmap? {
+        try {
+            ZipFile(file).use { zip ->
+                // Try common mod icon paths
+                val iconPaths = listOf(
+                    "pack.png",
+                    "logo.png",
+                    "icon.png",
+                    "assets/icon.png",
+                    "fabric.mod.json",
+                    "META-INF/MANIFEST.MF"
+                )
+
+                for (path in iconPaths) {
+                    val entry = zip.getEntry(path) ?: continue
+                    when {
+                        path.endsWith(".json") -> {
+                            // Parse fabric.mod.json for icon
+                            val json = zip.getInputStream(entry).bufferedReader().use { it.readText() }
+                            val iconMatch = Regex("\"icon\"\\s*:\\s*\"([^\"]+)\"").find(json)
+                            val iconPath = iconMatch?.groupValues?.get(1) ?: continue
+                            val iconEntry = zip.getEntry(iconPath) ?: continue
+                            val bitmap = BitmapFactory.decodeStream(zip.getInputStream(iconEntry))
+                            if (bitmap != null) return bitmap
+                        }
+                        path.endsWith(".png") -> {
+                            val bitmap = BitmapFactory.decodeStream(zip.getInputStream(entry))
+                            if (bitmap != null) return bitmap
+                        }
+                    }
+                }
+            }
+        } catch (_: Exception) {
+            // Silently fail, will use fallback
+        }
+        return null
+    }
 
     fun updateItems(newItems: List<ResourceItem>) {
         items = newItems.toMutableList()

@@ -48,16 +48,14 @@ abstract class AbstractResourceDownloadFragment(
     parentFragment: Fragment?,
     private val classify: Classify,
     private val categoryList: List<Category>,
-    private val showModloader: Boolean,
-    private val recommendedPlatform: Platform = Platform.CURSEFORGE
+    private val showModloader: Boolean
 ) : FragmentWithAnim(R.layout.fragment_download_resource) {
     private lateinit var binding: FragmentDownloadResourceBinding
 
-    private lateinit var mPlatformAdapter: ObjectSpinnerAdapter<Platform>
     private lateinit var mSortAdapter: ObjectSpinnerAdapter<Sort>
     private lateinit var mCategoryAdapter: ObjectSpinnerAdapter<Category>
     private lateinit var mModLoaderAdapter: ObjectSpinnerAdapter<ModLoader>
-    private var mCurrentPlatform: Platform = Platform.CURSEFORGE
+    private var mCurrentPlatform: Platform = Platform.MODRINTH
     private val mFilters: Filters = Filters()
 
     private val mInfoAdapter = InfoAdapter(parentFragment,
@@ -84,7 +82,6 @@ abstract class AbstractResourceDownloadFragment(
     ): View {
         binding = FragmentDownloadResourceBinding.inflate(layoutInflater)
 
-        mPlatformAdapter = ObjectSpinnerAdapter(binding.platformSpinner) { platform -> platform.pName }
         mSortAdapter = ObjectSpinnerAdapter(binding.sortSpinner) { sort -> getString(sort.resNameID) }
         mCategoryAdapter = ObjectSpinnerAdapter(binding.categorySpinner) { category -> getString(category.resNameID) }
         mModLoaderAdapter = ObjectSpinnerAdapter(binding.modloaderSpinner) { modloader ->
@@ -143,20 +140,15 @@ abstract class AbstractResourceDownloadFragment(
         }
 
         // 初始化 Spinner
-        mPlatformAdapter.setItems(Platform.entries)
         mSortAdapter.setItems(Sort.entries)
         mCategoryAdapter.setItems(categoryList)
         mModLoaderAdapter.setItems(ModLoader.entries)
 
+        // Hide platform spinner - only Modrinth is supported
+        binding.platformLayout.visibility = View.GONE
+
         binding.apply {
             initInstallButton(binding.installButton)
-
-            setSpinner(platformSpinner, mPlatformAdapter)
-            setSpinnerListener<Platform>(platformSpinner) {
-                if (mCurrentPlatform == it) return@setSpinnerListener
-                mCurrentPlatform = it
-                search()
-            }
 
             setSpinner(sortSpinner, mSortAdapter)
             setSpinnerListener<Sort>(sortSpinner) { mFilters.sort = it }
@@ -200,7 +192,6 @@ abstract class AbstractResourceDownloadFragment(
 
     private fun initSpinnerIndex() {
         binding.apply {
-            platformSpinner.selectItemByIndex(recommendedPlatform.ordinal)
             sortSpinner.selectItemByIndex(0)
             categorySpinner.selectItemByIndex(0)
             if (showModloader) modloaderSpinner.selectItemByIndex(0)
@@ -273,7 +264,6 @@ abstract class AbstractResourceDownloadFragment(
     }
 
     private fun closeSpinner() {
-        binding.platformSpinner.dismiss()
         binding.sortSpinner.dismiss()
         binding.categorySpinner.dismiss()
         binding.modloaderSpinner.dismiss()

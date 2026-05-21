@@ -142,6 +142,11 @@ public class MainMenuFragment extends FragmentWithAnim {
             new com.movtery.zalithlauncher.ui.dialog.QuickSettingsDialog(requireContext()).show();
         });
 
+        // Bell notification click listener
+        binding.bellNotificationFrame.setOnClickListener(v -> {
+            new com.movtery.zalithlauncher.ui.dialog.NotificationPanelDialog(requireContext()).show();
+        });
+
         binding.playButton.setOnClickListener(v -> EventBus.getDefault().post(new LaunchGameEvent()));
 
         binding.versionName.setSelected(true);

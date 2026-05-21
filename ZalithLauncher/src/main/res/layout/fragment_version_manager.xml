@@ -27,6 +27,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- Back Button -->
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:padding="@dimen/_6sdp"
+                android:src="@drawable/ic_close"
+                android:tint="#FFFFFF"
+                android:background="@drawable/btn_icon_bg"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <!-- Header -->
             <ImageView
                 android:id="@+id/shortcuts_header_icon"

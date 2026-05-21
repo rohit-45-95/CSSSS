@@ -178,6 +178,17 @@ class LaunchGame {
                 emptyList()
             }
 
+            // Inject CustomSkinLoader mod for offline accounts
+            if (AccountUtils.isNoLoginRequired(account)) {
+                val skinPath = com.craftstudio.launcher.utils.skin.SkinPreferenceStore.getSkinPath(activity, account.username)
+                com.craftstudio.launcher.feature.skin.CSLManager.injectCSL(
+                    activity,
+                    minecraftVersion.getGameDir(),
+                    account.username,
+                    skinPath
+                )
+            }
+
             launch(activity, account, minecraftVersion, javaRuntime, customArgs, authlibArgs)
 
             // Close Yggdrasil server after game ends

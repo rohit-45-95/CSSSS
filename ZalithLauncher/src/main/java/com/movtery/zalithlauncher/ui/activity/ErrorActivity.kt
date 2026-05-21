@@ -15,9 +15,12 @@ import com.craftstudio.launcher.databinding.ActivityErrorBinding
 import com.craftstudio.launcher.InfoCenter
 import com.craftstudio.launcher.utils.ZHTools
 import com.craftstudio.launcher.Tools
+import com.movtery.zalithlauncher.ai.CrashAIAnalyzer
+import java.io.File
 
 class ErrorActivity : BaseActivity() {
     private lateinit var binding: ActivityErrorBinding
+    private var currentCrashLogContent: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +38,10 @@ class ErrorActivity : BaseActivity() {
             startActivity(Intent(this@ErrorActivity, SplashActivity::class.java))
         }
         binding.shareLog.setOnClickListener { ZHTools.shareLogs(this) }
+
+        binding.aiAnalyzeButton.setOnClickListener {
+            analyzeWithAI()
+        }
 
         if (extras.getBoolean(BUNDLE_IS_LAUNCHER_CRASH, false)) {
             showLauncherCrash(extras)
@@ -62,6 +69,9 @@ class ErrorActivity : BaseActivity() {
         val strSavePath = extras.getString(BUNDLE_SAVE_PATH)
         val errorText = "$strSavePath :\r\n\r\n$stackTrace"
 
+        // Store crash log for AI analysis
+        currentCrashLogContent = stackTrace
+
         binding.apply {
             this.errorTitle.text = InfoCenter.replaceName(context, R.string.error_fatal)
             this.errorText.text = errorText
@@ -80,6 +90,9 @@ class ErrorActivity : BaseActivity() {
         val errorText = if (extras.getBoolean(BUNDLE_IS_SIGNAL)) R.string.game_singnal_message else R.string.game_exit_message
 
         val context = this
+
+        // Store crash log for AI analysis
+        currentCrashLogContent = getString(errorText, code)
 
         binding.apply {
             this.errorTitle.setText(R.string.generic_wrong_tip)
@@ -109,6 +122,46 @@ class ErrorActivity : BaseActivity() {
             this.topView.setBackgroundColor(ContextCompat.getColor(context, R.color.background_menu_top_error))
             this.background.setBackgroundResource(R.drawable.image_xibao)
         }
+    }
+
+    private fun analyzeWithAI() {
+        val crashLog = currentCrashLogContent
+        if (crashLog.isBlank()) {
+            binding.aiResultCard.visibility = View.VISIBLE
+            binding.aiResultText.text = "No crash log available for analysis."
+            return
+        }
+
+        // Show loading state
+        binding.aiAnalyzeButton.isEnabled = false
+        binding.aiAnalyzeButton.text = "Analyzing..."
+        binding.aiLoadingLayout.visibility = View.VISIBLE
+        binding.aiResultCard.visibility = View.GONE
+
+        val analyzer = CrashAIAnalyzer()
+        Thread {
+            analyzer.analyzeText(crashLog, object : CrashAIAnalyzer.Callback {
+                override fun onSuccess(analysis: String) {
+                    runOnUiThread {
+                        binding.aiLoadingLayout.visibility = View.GONE
+                        binding.aiResultCard.visibility = View.VISIBLE
+                        binding.aiResultText.text = analysis
+                        binding.aiAnalyzeButton.isEnabled = true
+                        binding.aiAnalyzeButton.text = "Ask Craft Studio AI for a Fix"
+                    }
+                }
+
+                override fun onFailure(error: String) {
+                    runOnUiThread {
+                        binding.aiLoadingLayout.visibility = View.GONE
+                        binding.aiResultCard.visibility = View.VISIBLE
+                        binding.aiResultText.text = error
+                        binding.aiAnalyzeButton.isEnabled = true
+                        binding.aiAnalyzeButton.text = "Ask Craft Studio AI for a Fix"
+                    }
+                }
+            })
+        }.start()
     }
 
     companion object {

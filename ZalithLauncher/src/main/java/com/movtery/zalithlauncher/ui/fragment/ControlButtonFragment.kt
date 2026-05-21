@@ -89,6 +89,11 @@ class ControlButtonFragment : FragmentWithAnim(R.layout.fragment_control_manager
         initViews()
         parseBundle()
 
+        // Wire up back button
+        view.findViewById<View>(R.id.btn_back)?.setOnClickListener {
+            ZHTools.onBackPressed(requireActivity())
+        }
+
         controlsListViewCreator.apply {
             setSelectedListener(object : ControlSelectedListener() {
                 override fun onItemSelected(file: File) {

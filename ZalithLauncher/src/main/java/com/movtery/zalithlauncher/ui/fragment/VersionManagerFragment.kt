@@ -36,6 +36,11 @@ class VersionManagerFragment : FragmentWithAnim(R.layout.fragment_version_manage
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Wire up back button
+        view.findViewById<View>(R.id.btn_back)?.setOnClickListener {
+            ZHTools.onBackPressed(requireActivity())
+        }
+
         val fragment = this
         binding.apply {
             shortcutsMods.setOnClickListener(fragment)
