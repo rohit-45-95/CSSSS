@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.craftstudio.launcher.anim.Animations;
+import com.craftstudio.launcher.anim.animations.Animations;
 import com.craftstudio.launcher.databinding.ViewLoggerBinding;
 import com.craftstudio.launcher.setting.AllSettings;
 import com.craftstudio.launcher.utils.anim.ViewAnimUtils;
