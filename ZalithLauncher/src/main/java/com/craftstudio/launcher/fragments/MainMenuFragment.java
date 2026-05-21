@@ -145,7 +145,7 @@ public class MainMenuFragment extends FragmentWithAnim {
 
         // Bell notification click listener
         binding.bellNotificationFrame.setOnClickListener(v -> {
-            new com.movtery.zalithlauncher.ui.dialog.NotificationPanelDialog(requireContext()).show();
+            new com.craftstudio.launcher.ui.dialog.NotificationPanelDialog(requireContext()).show();
         });
 
         binding.playButton.setOnClickListener(v -> EventBus.getDefault().post(new LaunchGameEvent()));
