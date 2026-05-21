@@ -1,9 +1,7 @@
 package com.craftstudio.launcher.ui.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ImageView
@@ -47,14 +45,6 @@ class QuickSettingsFragment : BaseFragment(R.layout.fragment_quick_settings) {
 
     private lateinit var rendererIdentifiers: Array<String>
     private lateinit var rendererNames: Array<String>
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -271,11 +261,11 @@ class QuickSettingsFragment : BaseFragment(R.layout.fragment_quick_settings) {
         forceBack()
     }
 
-    override fun slideIn(animPlayer: AnimPlayer) {
+    fun slideIn(animPlayer: AnimPlayer) {
         animPlayer.apply(AnimPlayer.Entry(requireView(), Animations.BounceInRight))
     }
 
-    override fun slideOut(animPlayer: AnimPlayer) {
+    fun slideOut(animPlayer: AnimPlayer) {
         animPlayer.apply(AnimPlayer.Entry(requireView(), Animations.FadeOutLeft))
     }
 }
