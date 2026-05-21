@@ -1,5 +1,6 @@
 package com.craftstudio.launcher.anim
 
+import com.craftstudio.launcher.anim.animations.BaseAnimator
 import com.craftstudio.launcher.anim.animations.bounce.BounceEnlargeAnimator
 import com.craftstudio.launcher.anim.animations.bounce.BounceInDownAnimator
 import com.craftstudio.launcher.anim.animations.bounce.BounceInLeftAnimator
