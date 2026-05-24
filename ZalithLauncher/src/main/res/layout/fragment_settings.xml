@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_settings_screen"
+    android:clipToPadding="false"
+    tools:context="com.craftstudio.launcher.ui.fragment.SettingsFragment"
+    tools:ignore="ContentDescription">
+
+    <View
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:alpha="0.15"
+        android:background="@drawable/bg_settings_glow_amber"
+        android:translationX="-40dp"
+        android:translationY="-30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:alpha="0.10"
+        android:background="@drawable/bg_settings_glow_blue"
+        android:translationX="60dp"
+        android:translationY="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/layout_anim_settings_stagger"
+            android:orientation="vertical"
+            android:paddingStart="14dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="20dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_settings_header_card"
+                    android:minHeight="88dp"
+                    android:paddingStart="18dp"
+                    android:paddingTop="16dp"
+                    android:paddingEnd="8dp"
+                    android:paddingBottom="16dp">
+
+                    <FrameLayout
+                        android:id="@+id/settings_header_icon_card"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_settings_icon_glow_holder"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/settings_header_icon"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_setting_launcher"
+                            app:tint="#E8EBEF" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginEnd="8dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/settings_header_art"
+                        app:layout_constraintStart_toEndOf="@id/settings_header_icon_card"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-bold"
+                            android:letterSpacing="0.02"
+                            android:text="Settings"
+                            android:textColor="#FFFFFF"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:alpha="0.65"
+                            android:fontFamily="sans-serif"
+                            android:text="Customize your launcher"
+                            android:textColor="#CCCCCC"
+                            android:textSize="11sp" />
+
+                        <View
+                            android:layout_width="42dp"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="8dp"
+                            android:background="@drawable/bg_settings_amber_accent_line" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/settings_header_art"
+                        android:layout_width="90dp"
+                        android:layout_height="80dp"
+                        android:alpha="0.5"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/bg_settings_art"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="16dp"
+                    android:background="@drawable/bg_settings_amber_accent_line" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:letterSpacing="0.06"
+                    android:text="QUICK ACCESS"
+                    android:textColor="#80FFB300"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                    android:id="@+id/video_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:stateListAnimator="@animator/anim_settings_card_press">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_settings_card_glass"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingStart="8dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="14dp">
+
+                            <FrameLayout
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                android:background="@drawable/bg_settings_icon_circle">
+
+                                <ImageView
+                                    android:id="@+id/video_image"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_setting_video"
+                                    app:tint="#FFB300" />
+
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Video"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:alpha="0.55"
+                                android:gravity="center"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Graphics &amp; display"
+                                android:textColor="#BBBBBB"
+                                android:textSize="9sp" />
+
+                            <View
+                                android:layout_width="28dp"
+                                android:layout_height="3dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/bg_settings_arrow_pill" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+                <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                    android:id="@+id/controls_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:stateListAnimator="@animator/anim_settings_card_press">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_settings_card_glass"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingStart="8dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="14dp">
+
+                            <FrameLayout
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                android:background="@drawable/bg_settings_icon_circle">
+
+                                <ImageView
+                                    android:id="@+id/controls_image"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_menu_custom_controls"
+                                    app:tint="#FFB300" />
+
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Controls"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:alpha="0.55"
+                                android:gravity="center"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Touch &amp; keys"
+                                android:textColor="#BBBBBB"
+                                android:textSize="9sp" />
+
+                            <View
+                                android:layout_width="28dp"
+                                android:layout_height="3dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/bg_settings_arrow_pill" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+                <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                    android:id="@+id/game_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:stateListAnimator="@animator/anim_settings_card_press">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_settings_card_glass"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:paddingStart="8dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="14dp">
+
+                            <FrameLayout
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                android:background="@drawable/bg_settings_icon_circle">
+
+                                <ImageView
+                                    android:id="@+id/game_image"
+                                    android:layout_width="22dp"
+                                    android:layout_height="22dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_setting_game"
+                                    app:tint="#FFB300" />
+
+                            </FrameLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="@string/setting_category_game"
+                                android:textColor="#FFFFFF"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="4dp"
+                                android:alpha="0.55"
+                                android:gravity="center"
+                                android:lineSpacingExtra="2dp"
+                                android:text="Gameplay options"
+                                android:textColor="#BBBBBB"
+                                android:textSize="9sp" />
+
+                            <View
+                                android:layout_width="28dp"
+                                android:layout_height="3dp"
+                                android:layout_marginTop="10dp"
+                                android:background="@drawable/bg_settings_arrow_pill" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                    android:id="@+id/launcher_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:stateListAnimator="@animator/anim_settings_card_press">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_settings_card_glass"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="14dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="14dp"
+                            android:paddingBottom="16dp">
+
+                            <FrameLayout
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:background="@drawable/bg_settings_icon_circle">
+
+                                <ImageView
+                                    android:id="@+id/launcher_image"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_setting_launcher"
+                                    app:tint="#FFB300" />
+
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:text="@string/setting_category_launcher"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="12sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:alpha="0.55"
+                                    android:text="Behavior &amp; updates"
+                                    android:textColor="#BBBBBB"
+                                    android:textSize="9sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:alpha="0.4"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="#FFB300" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+                <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                    android:id="@+id/experimental_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:stateListAnimator="@animator/anim_settings_card_press">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_settings_card_glass_experimental"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="14dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="14dp"
+                            android:paddingBottom="16dp">
+
+                            <FrameLayout
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:background="@drawable/bg_settings_icon_circle_experimental">
+
+                                <ImageView
+                                    android:id="@+id/experimental_image"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_setting_experimental"
+                                    app:tint="#FF7043" />
+
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="@string/setting_category_experimental"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="12sp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="6dp"
+                                        android:background="@drawable/bg_settings_beta_badge"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:paddingStart="5dp"
+                                        android:paddingTop="1dp"
+                                        android:paddingEnd="5dp"
+                                        android:paddingBottom="1dp"
+                                        android:text="BETA"
+                                        android:textColor="#FF7043"
+                                        android:textSize="7sp" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:alpha="0.55"
+                                    android:text="Advanced features"
+                                    android:textColor="#BBBBBB"
+                                    android:textSize="9sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:alpha="0.4"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="#FF7043" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+                <com.craftstudio.launcher.ui.layout.AnimRelativeLayout
+                    android:id="@+id/cursor_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:stateListAnimator="@animator/anim_settings_card_press">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@android:color/transparent"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_settings_card_glass"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingStart="14dp"
+                            android:paddingTop="16dp"
+                            android:paddingEnd="14dp"
+                            android:paddingBottom="16dp">
+
+                            <FrameLayout
+                                android:layout_width="42dp"
+                                android:layout_height="42dp"
+                                android:background="@drawable/bg_settings_icon_circle">
+
+                                <ImageView
+                                    android:id="@+id/cursor_image"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_setting_cursor"
+                                    app:tint="#24B538" />
+
+                            </FrameLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="sans-serif-medium"
+                                        android:text="Custom Cursor"
+                                        android:textColor="#FFFFFF"
+                                        android:textSize="13sp" />
+
+                                </LinearLayout>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:alpha="0.55"
+                                    android:text="Upload or draw cursors"
+                                    android:textColor="#BBBBBB"
+                                    android:textSize="9sp" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:layout_width="16dp"
+                                android:layout_height="16dp"
+                                android:alpha="0.4"
+                                android:src="@drawable/ic_arrow_right"
+                                app:tint="#24B538" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+                </com.craftstudio.launcher.ui.layout.AnimRelativeLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:alpha="0.25"
+                android:fontFamily="sans-serif"
+                android:gravity="center"
+                android:text="CraftStudio Launcher"
+                android:textColor="#FFFFFF"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/settings_viewpager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/settings_layout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/settings_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <View
+            android:id="@+id/shadowView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.angcyo.tablayout.DslTabLayout
+            android:id="@+id/settings_tab"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintEnd_toStartOf="@+id/shadowView"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
